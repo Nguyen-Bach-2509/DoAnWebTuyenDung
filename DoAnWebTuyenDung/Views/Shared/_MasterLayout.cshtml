@@ -1,0 +1,185 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-text h1 {
+    font-size: 24px;
+    color: #4C4CFF;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.logo-text p {
+    color: #FF4C4C;
+    font-size: 12px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000; 
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FF4C4C; / Màu đỏ khi hover /
+}
+
+nav ul li a:active, nav ul li a.active {
+    color: #FF4C4C; / Màu đỏ khi active /
+}
+
+.auth-buttons {
+    display: flex;
+}
+
+.auth-buttons .register {
+    display: flex;
+    margin-right: 30px;
+    text-decoration: none;
+    color: #000; / Màu đen mặc định /
+    font-size: 16px;
+    align-items: center;
+}
+
+.auth-buttons .login {
+    background-color: #FF4C4C;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.auth-buttons .register:hover,
+.auth-buttons .login:hover {
+    color: #FF4C4C; / Màu đỏ khi hover */
+}
+        header.job-listing-header {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+            header.job-listing-header .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(69, 45, 158, 0.8); /* Lớp phủ tím mờ */
+            }
+
+            header.job-listing-header .banner-content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+            }
+
+            header.job-listing-header h1 {
+                font-size: 48px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+
+
+            header.job-listing-header p a {
+                color: black;
+                text-decoration: none;
+            }
+
+                header.job-listing-header p a:hover {
+                    color: #FF4C4C;
+                }
+
+        .white-border {
+            padding: 8px;
+            width: 200px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    {/* Navbar */}
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Gotto Logo" />
+            <div class="logo-text">
+                <h1>LAPTRINHWEB</h1>
+                <p>KIẾM VIỆC LÀM ONLINE</p>
+            </div>
+        </div>
+        <nav>
+            <ul class>
+                <li><a href="#">TRANG CHỦ</a></li>
+                <li><a href="#">GIỚI THIỆU</a></li>
+                <li><a href="#">CÔNG VIỆC</a></li>
+                <li><a href="#">LIÊN HỆ</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" class="register">ĐĂNG KÝ</a>
+            <a href="#" class="login">ĐĂNG NHẬP</a>
+        </div>
+    </header>
+    {/* Banner */}
+
+    <header class="job-listing-header">
+        <div class="overlay"></div>
+        <div class="banner-content">
+            <h1>DANH SÁCH VIỆC LÀM</h1>
+            <div class="white-border">
+                <p><a href="#">Xem Thêm</a> </p>
+            </div>
+        </div>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
