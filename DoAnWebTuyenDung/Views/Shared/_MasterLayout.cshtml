@@ -25,7 +25,6 @@
         flex-direction: row;
         align-items: center;
         margin-right: 20px; /* Space between logo and navigation */
-
     }
 
         .logo img {
@@ -48,7 +47,6 @@
 
         nav ul li {
             margin: 0 20px; /* Space between menu items */
-
         }
 
             nav ul li a {
@@ -57,6 +55,7 @@
                 font-size: 16px;
                 transition: color 0.3s ease;
             }
+
                 nav ul li a i {
                     display: flex;
                     font-size: 12px;
@@ -78,8 +77,6 @@
             color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
-
-
         }
 
 
@@ -120,6 +117,7 @@
         color: white;
         z-index: 1;
     }
+
         .banner::before {
             content: "";
             position: absolute;
@@ -172,13 +170,13 @@
 
 
 
-            .white-border {
-                padding: 6px;
-                width: 160px; /* Reduced the width for better alignment */
-                margin: auto;
-                background: white;
-                border-radius: 15px;
-            }
+    .white-border {
+        padding: 6px;
+        width: 160px; /* Reduced the width for better alignment */
+        margin: auto;
+        background: white;
+        border-radius: 15px;
+    }
 
     .search-section {
         position: relative; /* Để các phần tử bên trong có thể sử dụng position absolute */
@@ -206,15 +204,15 @@
         height: auto;
     }
 
-        .search-section form {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .search-section form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
     .search-field {
         margin: 0 10px;
@@ -262,7 +260,7 @@
         text-align: center;
     }
 
-     h1 {
+    h1 {
         font-size: 36px;
         font-weight: bold;
         margin-bottom: 50px;
@@ -298,6 +296,7 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
+
         .category i {
             font-size: 25px;
         }
@@ -307,20 +306,23 @@
             color: #FF4C4C;
         }
 
-         .(max-width: 768px) {
-            .grid
-            {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    .(max-width: 768px) {
+        .grid
 
-         .(max-width: 480px) {
-            .grid
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-        {
-            grid-template-columns: 1fr;
-        }
-        }
+    }
+
+    .(max-width: 480px) {
+        .grid
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    }
 
     .container1 {
         max-width: 1200px;
@@ -525,7 +527,10 @@
             </ul>
         </nav>
         <div class="auth-buttons">
-            <a href="#" class="register">ĐĂNG KÝ</a>
+            <div class="sign-up">
+                <p>Đăng ký</p>
+                <p> <a href="@Url.Action("TrangChu2")">Đăng Ký</a></p>
+            </div>
             <a href="#" class="login">ĐĂNG NHẬP</a>
         </div>
     </header>
@@ -536,13 +541,13 @@
             <p>Kết nối đúng người, đúng thời, đúng hướng.</p>
             <div class="banner-buttons">
                 <a class="start-btn" href="#">THAM KHẢO NGAY!</a>
-               
+
             </div>
         </div>
     </div>
 
     <div class="search-section">
-        <img src="https://pngfre.com/wp-content/uploads/magnifying-glass-10-942x1024.png" class="mag-glass"/>
+        <img src="https://pngfre.com/wp-content/uploads/magnifying-glass-10-942x1024.png" class="mag-glass" />
         <img src="https://png.pngtree.com/png-vector/20240708/ourmid/pngtree-palm-tree-leaves-overlay-texture-tropical-border-of-green-plants-fresh-png-image_12959690.png" class="corner-image">
         <form>
             <div class="search-field">
@@ -701,7 +706,7 @@
             </div>
         </div>
 
-     
+
     </div>
 
     <div>

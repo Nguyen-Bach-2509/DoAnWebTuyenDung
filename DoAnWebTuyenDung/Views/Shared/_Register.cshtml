@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Thành Viên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+            .social-login button {
+                background-color: #4267B2;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .social-login button.google {
+                    background-color: #DB4437;
+                }
+
+        .btn-submit {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+
+            .footer a {
+                color: #FF6F00;
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="data:image/png;base64,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" alt="VietnamWorks Logo">
+        </div>
+        <h1>Đăng Ký Thành Viên!</h1>
+
+
+        <form action="#" method="POST">
+            <input type="text" name="firstname" placeholder="Tên">
+            <input type="text" name="lastname" placeholder="Họ">
+            <select name="country-code">
+                <option value="+84">+84 Việt Nam</option>
+                <!-- Add other countries here if needed -->
+            </select>
+            <input type="text" name="phone" placeholder="Số điện thoại">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Mật Khẩu (Từ 6 đến 50 ký tự, 1 chữ hoa, 1 số)">
+
+            <label>
+                <input type="checkbox" name="agree">
+                Tôi đồng ý với <a href="#">Thỏa thuận sử dụng</a> và <a href="#">Quy định bảo mật</a> của Vieclam24h
+            </label>
+
+            <button type="submit" class="btn-submit">Đăng Ký</button>
+        </form>
+
+        <div class="footer">
+            Bạn là thành viên Vieclam24h? <a href="#">Đăng Nhập</a><br>
+            Nếu bạn đang có nhu cầu tuyển dụng, vui lòng đăng ký <a href="#">tại đây</a>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

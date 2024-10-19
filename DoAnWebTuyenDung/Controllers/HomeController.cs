@@ -30,5 +30,9 @@ namespace DoAnWebTuyenDung.Controllers
         {
             return View();
         }
+        public ActionResult TrangChu2()
+        {
+            return View();
+        }
     }
 }
