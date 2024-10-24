@@ -1,0 +1,37 @@
+﻿@model DoAnWebTuyenDung.Models.JobCategory
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center text-white p-3" style="background-color: #28a745;">THÊM DANH MỤC CÔNG VIỆC</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal mt-4">
+        <h4 class="text-center">Thêm mới danh mục công việc</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-8 text-right">
+                <input type="submit" value="Tạo mới" class="btn btn-success btn-lg" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="text-right mt-3">
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+</div>

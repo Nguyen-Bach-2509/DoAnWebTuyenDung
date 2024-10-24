@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.JobCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2 class="text-center text-white p-3" style="background-color: #28a745;">DANH MỤC CÔNG VIỆC</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Danh Sách Danh Mục</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover table-striped" style="background-color: #f8f9fa;">
+                        <thead style="background-color: #343a40; color: #fff;">
+                            <tr>
+                                <th class="text-center">TÊN DANH MỤC</th>
+                                <th class="text-center">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle text-center">
+                                        @Html.DisplayFor(modelItem => item.CategoryName)
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-warning btn-sm mx-1" })
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-danger btn-sm mx-1" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-right">
+                    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-success btn-lg" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

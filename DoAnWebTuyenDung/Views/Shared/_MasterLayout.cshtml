@@ -306,23 +306,7 @@
             color: #FF4C4C;
         }
 
-    .(max-width: 768px) {
-        .grid
-
-    {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    }
-
-    .(max-width: 480px) {
-        .grid
-
-    {
-        grid-template-columns: 1fr;
-    }
-
-    }
+    
 
     .container1 {
         max-width: 1200px;
@@ -498,6 +482,7 @@
             .pagination span.active {
                 background-color: green;
             }
+
 </style>
 <!DOCTYPE html>
 <html>
@@ -513,7 +498,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="~/Content/vieclam24h.jpg" />
+            <img src="~/Content/vieclam24h.jpg" alt="Vieclam24h logo" />
             <div class="logo-text">
                 <p>KIẾM VIỆC LÀM ONLINE</p>
             </div>
@@ -522,8 +507,8 @@
             <ul>
                 <li><a href="#"><i class="fas fa-home"></i> TRANG CHỦ</a></li>
                 <li><a href="~/Home/About"><i class="fas fa-chevron-circle-down"></i> GIỚI THIỆU</a></li>
-                <li><a href="#"><i class="fas fa-briefcase"></i> CÔNG VIỆC</a></li>
-                <li><a href="#"><i class="fa-solid fa-phone"></i> LIÊN HỆ</a></li>
+                <li><a href="#"><i class="fas fa-briefcase"></i>CÔNG VIỆC</a></li>
+                <li><a href="~/Home/Contact"><i class="fa-solid fa-phone"></i> LIÊN HỆ</a></li>
             </ul>
         </nav>
         <div class="auth-buttons">

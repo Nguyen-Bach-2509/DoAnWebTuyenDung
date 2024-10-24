@@ -1,19 +1,149 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Varela Round', sans-serif;
+        padding: 0;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        height: 100px;
+        align-items: center;
+        padding: 5px 15px; /* Reduced padding */
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 20px; /* Space between logo and navigation */
+    }
+
+        .logo img {
+            width: 100px; /* Reduced the size of the logo for a compact look */
+            height: 100px;
+        }
+
+    .logo-text p {
+        color: #FF4C4C;
+        font-size: 17px; /* Reduced the font size for better balance */
+        font-weight: bold;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        nav ul li {
+            margin: 0 20px; /* Space between menu items */
+        }
+
+            nav ul li a {
+                text-decoration: none;
+                color: #7d7b7f;
+                font-size: 16px;
+                transition: color 0.3s ease;
+            }
+
+                nav ul li a i {
+                    display: flex;
+                    font-size: 12px;
+                    padding: 5px;
+                    justify-items: center;
+                }
+
+                nav ul li a:hover {
+                    color: #FF4C4C;
+                }
+
+    .auth-buttons {
+        display: flex;
+        align-items: center;
+    }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+
+        .auth-buttons .register {
+            margin-right: 15px; /* Reduced margin for better alignment */
+            text-decoration: none;
+            color: #7d7b7f;
+            font-size: 16px;
+        }
+
+        .auth-buttons .login {
+            background-color: #FF4C4C;
+            color: #fff;
+            padding: 8px 16px; /* Reduced padding to make the button smaller */
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .auth-buttons .register:hover {
+            color: #FF4C4C;
+        }
+
+        .auth-buttons .login:hover {
+            background-color: #1ecdf0;
+        }
+</style>
+@{
+    Layout = null;
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+<!DOCTYPE html>
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
-</main>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="~/Content/vieclam24h.jpg" />
+            <div class="logo-text">
+                <p>KIẾM VIỆC LÀM ONLINE</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="~/Home/TrangChu"><i class="fas fa-home"></i> TRANG CHỦ</a></li>
+                <li><a href="~/Home/About"><i class="fas fa-chevron-circle-down"></i> GIỚI THIỆU</a></li>
+                <li><a href="#"><i class="fas fa-briefcase"></i>CÔNG VIỆC</a></li>
+                <li><a href="~/Home/Contact"><i class="fa-solid fa-phone"></i> LIÊN HỆ</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <div class="sign-up">
+                <a href="@Url.Action("TrangChu2")" class="register">Đăng Ký</a>
+            </div>
+            <a href="#" class="login">ĐĂNG NHẬP</a>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <h1>Trang liên hệ</h1>
+    </div>
+</body>
+</html>

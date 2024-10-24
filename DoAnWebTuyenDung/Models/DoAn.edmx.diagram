@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="59f7b1ce90bc4ccfa72342811a0fcc7b" Name="Diagram1">
+        <EntityTypeShape EntityType="DoAnWebModel.Application" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWebModel.Candidate" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWebModel.Company" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWebModel.Job" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWebModel.JobCategory" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWebModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWebModel.User" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="DoAnWebModel.FK__Applicati__Candi__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWebModel.FK__Applicati__JobID__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWebModel.FK__Candidate__UserI__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWebModel.FK__Company__UserID__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWebModel.FK__Job__CompanyID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWebModel.JobCategoryMapping" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

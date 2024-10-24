@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DoAnWebTuyenDung.Data;
+using DoAnWebTuyenDung.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,15 +10,20 @@ namespace DoAnWebTuyenDung.Controllers
 {
     public class HomeController : Controller
     {
+        private DoAnWebEntities1 db = new DoAnWebEntities1();
         public ActionResult Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                // 
+            }
+                return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            
             return View();
         }
 
