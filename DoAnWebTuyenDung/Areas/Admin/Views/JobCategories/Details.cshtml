@@ -7,6 +7,7 @@
 
 <h2 class="text-center text-white p-3" style="background-color: #28a745;">CHI TIẾT DANH MỤC CÔNG VIỆC</h2>
 
+<<<<<<< HEAD
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -57,3 +58,24 @@
         </div>
     </div>
 </div>
+=======
+<div>
+    <h4>JobCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+           
+>>>>>>> 2a19dfbb959c727fef7191eae3a4df49a65943eb
