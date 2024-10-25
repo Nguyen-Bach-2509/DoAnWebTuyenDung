@@ -10,41 +10,38 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Admin Dashboard", "Index", "Home", new { area = "admin" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            @Html.ActionLink("Bảng điều khiển Quản trị", "Index", "Home", new { area = "admin" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Chuyển đổi điều hướng" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Chuyển đổi điều hướng">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Trang chủ Admin", "Index", "Home", new { area = "admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Trang chủ Quản trị", "Index", "Home", new { area = "admin" }, new { @class = "nav-link" })</li>
 
-                    <!-- User management -->
+                    <!-- Quản lý Người dùng -->
                     <li>@Html.ActionLink("Quản lý Người dùng", "Index", "User", new { area = "admin" }, new { @class = "nav-link" })</li>
 
-                    <!-- Company management -->
+                    <!-- Quản lý Công ty -->
                     <li>@Html.ActionLink("Quản lý Công ty", "Index", "Company", new { area = "admin" }, new { @class = "nav-link" })</li>
 
-                    <!-- Job Category management -->
-                    <li>@Html.ActionLink("Quản lý Danh mục", "Index", "JobCategory", new { area = "admin" }, new { @class = "nav-link" })</li>
+                    <!-- Quản lý Danh mục Công việc -->
+                    <li>@Html.ActionLink("Quản lý Danh mục", "Index", "JobCategories", new { area = "admin" }, new { @class = "nav-link" })</li>
 
-                    <!-- Job management -->
-                    <li>@Html.ActionLink("Quản lý Công việc", "Index", "Job", new { area = "admin" }, new { @class = "nav-link" })</li>
+                    <!-- Quản lý Công việc -->
+                    <li>@Html.ActionLink("Quản lý Công việc", "Index", "Jobs", new { area = "admin" }, new { @class = "nav-link" })</li>
 
-                    <!-- Candidate management -->
+                    <!-- Quản lý Ứng viên -->
                     <li>@Html.ActionLink("Quản lý Ứng viên", "Index", "Candidate", new { area = "admin" }, new { @class = "nav-link" })</li>
 
-                    <!-- Application management -->
+                    <!-- Quản lý Đơn ứng tuyển -->
                     <li>@Html.ActionLink("Quản lý Đơn ứng tuyển", "Index", "Application", new { area = "admin" }, new { @class = "nav-link" })</li>
-
-
-
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container body-content">
-        @RenderBody()
+        @RenderBody() <!-- Nội dung chính sẽ được hiển thị tại đây -->
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Hệ thống Quản trị Tuyển dụng</p>
@@ -53,6 +50,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false) <!-- Phần tùy chọn cho các tập lệnh bổ sung -->
 </body>
 </html>

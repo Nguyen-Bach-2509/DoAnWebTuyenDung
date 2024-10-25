@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.Job>
+
+@{
+    ViewBag.Title = "Danh Sách Công Việc";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center text-white p-3" style="background-color: #28a745;">DANH SÁCH CÔNG VIỆC</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Danh Sách Công Việc</h5>
+                </div>
+                <div class="card-body">
+                    
+                    <table class="table table-bordered table-hover table-striped" style="background-color: #f8f9fa;">
+                        <thead style="background-color: #343a40; color: #fff;">
+                            <tr>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.JobTitle)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.JobDescription)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.JobRequirements)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.SalaryRange)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.JobLocation)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.JobType)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.PostDate)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.Company.CompanyName)</th>
+                                <th class="text-center">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.JobTitle)</td>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.JobDescription)</td>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.JobRequirements)</td>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.SalaryRange)</td>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.JobLocation)</td>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.JobType)</td>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.PostDate)</td>
+                                    <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.Company.CompanyName)</td>
+                                    <td class="align-middle text-center">
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.JobID }, new { @class = "btn btn-warning btn-sm mx-1" }) |
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.JobID }, new { @class = "btn btn-info btn-sm mx-1" }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.JobID }, new { @class = "btn btn-danger btn-sm mx-1", onclick = "return confirm('Bạn có chắc chắn muốn xóa?');" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <p>
+                        @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary btn-lg" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

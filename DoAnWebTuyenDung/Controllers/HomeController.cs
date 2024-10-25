@@ -10,7 +10,7 @@ namespace DoAnWebTuyenDung.Controllers
 {
     public class HomeController : Controller
     {
-        private DoAnWebEntities1 db = new DoAnWebEntities1();
+        private DoAnWebEntities2 db = new DoAnWebEntities2();
         public ActionResult Index()
         {
             using (var context = new ApplicationDbContext())

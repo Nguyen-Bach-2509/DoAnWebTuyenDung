@@ -1,81 +1,59 @@
-﻿@model DoAnWebTuyenDung.Models.JobCategory
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.JobCategory>
 
 @{
-    ViewBag.Title = "Chi Tiết Danh Mục Công Việc";
+    ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="text-center text-white p-3" style="background-color: #28a745;">CHI TIẾT DANH MỤC CÔNG VIỆC</h2>
+<h2 class="text-center text-white p-3" style="background-color: #28a745;">DANH MỤC CÔNG VIỆC</h2>
 
-<<<<<<< HEAD
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-success text-white">
-                    <h5 class="mb-0">Thông Tin Chi Tiết Danh Mục</h5>
+                    <h5 class="mb-0">Danh Sách Danh Mục</h5>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-hover" style="background-color: #f8f9fa;">
-                        <tbody>
+                    <table class="table table-bordered table-hover table-striped" style="background-color: #f8f9fa;">
+                        <thead style="background-color: #343a40; color: #fff;">
                             <tr>
                                 <th class="text-center">TÊN DANH MỤC</th>
-                                <td class="text-center">@Html.DisplayFor(model => model.CategoryName)</td>
+                                <th class="text-center">SỐ LƯỢNG CÔNG VIỆC</th> <!-- Cột số lượng công việc -->
+                                <th class="text-center">MÔ TẢ</th> <!-- Thêm cột Mô tả -->
+                                <th class="text-center">TRẠNG THÁI</th> <!-- Thêm cột Trạng thái -->
+                                <th class="text-center">THAO TÁC</th>
                             </tr>
-                            <tr>
-                                <th class="text-center">MÔ TẢ</th>
-                                <td class="text-center">@Html.DisplayFor(model => model.Description)</td>
-                            </tr>
-                            <tr>
-                                <th class="text-center">TRẠNG THÁI</th>
-                                <td class="text-center">
-                                    @if (Model.Status)
-                                    {
-                                        <span class="text-success">Đang hoạt động</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="text-danger">Không hoạt động</span>
-                                    }
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-center">NGÀY TẠO</th>
-                                <td class="text-center">@Html.DisplayFor(model => model.CreatedDate)</td>
-                            </tr>
-                            <tr>
-                                <th class="text-center">SỐ LƯỢNG CÔNG VIỆC</th>
-                                <td class="text-center">@Html.DisplayFor(model => model.JobCount)</td>
-                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle text-center">
+                                        @Html.DisplayFor(modelItem => item.CategoryName)
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        @Html.DisplayFor(modelItem => item.JobCount)
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        @Html.DisplayFor(modelItem => item.Description) <!-- Hiển thị mô tả -->
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        @Html.DisplayFor(modelItem => item.Status) <!-- Hiển thị trạng thái (true/false) -->
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-warning btn-sm mx-1" })
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-danger btn-sm mx-1", onclick = "return confirm('Bạn có chắc chắn muốn xóa?');" })
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer text-right">
-                    @Html.ActionLink("Cập nhật", "Edit", new { id = Model.CategoryID }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+                    <div class="card-footer text-right">
+                        @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-success btn-lg" })
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-=======
-<div>
-    <h4>JobCategory</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-           
->>>>>>> 2a19dfbb959c727fef7191eae3a4df49a65943eb

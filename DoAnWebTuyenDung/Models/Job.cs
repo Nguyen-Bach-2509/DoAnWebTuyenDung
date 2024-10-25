@@ -11,7 +11,7 @@ namespace DoAnWebTuyenDung.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Job
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +20,7 @@ namespace DoAnWebTuyenDung.Models
             this.Applications = new HashSet<Application>();
             this.JobCategories = new HashSet<JobCategory>();
         }
-    
+
         public int JobID { get; set; }
         public int CompanyID { get; set; }
         public string JobTitle { get; set; }
@@ -30,7 +30,7 @@ namespace DoAnWebTuyenDung.Models
         public string JobLocation { get; set; }
         public string JobType { get; set; }
         public System.DateTime PostDate { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
         public virtual Company Company { get; set; }

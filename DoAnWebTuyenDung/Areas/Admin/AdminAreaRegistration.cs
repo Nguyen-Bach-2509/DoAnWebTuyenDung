@@ -17,7 +17,7 @@ namespace DoAnWebTuyenDung.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                new {area = "Admin", action = "Index", id = UrlParameter.Optional },
                 new[] { "DoAnWebTuyenDung.Areas.Admin.Controllers" }
             );
         }
