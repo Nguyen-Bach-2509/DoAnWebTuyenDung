@@ -1,4 +1,4 @@
---New Database: MyStore
+﻿
 -- Bang User: quan ly ca tai khoan cua Khach hang va Admin
 CREATE TABLE [dbo].[User] (
     [UserID] INT IDENTITY(1, 1) NOT NULL,
@@ -15,12 +15,12 @@ CREATE TABLE [dbo].[Company] (
     [CompanyAddress] NVARCHAR(MAX) NULL,
     [CompanyPhone] NVARCHAR(15) NOT NULL,
     [CompanyEmail] NVARCHAR(MAX) NOT NULL,
-    [UserID] INT NOT NULL, -- Li�n k?t v?i User (Recruiter)
+    [UserID] INT NOT NULL, -- Liên kết với User (Recruiter)
     PRIMARY KEY CLUSTERED ([CompanyID] ASC),
     FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([UserID])
 );
 
---Bang Job: L�u tr? th�ng tin c�c b�i ��ng tuy?n d?ng.
+--Bang Job: Lưu trữ thông tin các bài đăng tuyển dụng.
 CREATE TABLE [dbo].[Job] (
     [JobID] INT IDENTITY(1, 1) NOT NULL,
     [CompanyID] INT NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE [dbo].[Job] (
     [JobRequirements] NVARCHAR(MAX) NULL,
     [SalaryRange] NVARCHAR(MAX) NULL,
     [JobLocation] NVARCHAR(MAX) NOT NULL,
-    [JobType] NVARCHAR(50) NULL, -- V� d?: Full-time, Part-time, Contract
+    [JobType] NVARCHAR(50) NULL, -- Ví dụ: Full-time, Part-time, Contract
     [PostDate] DATE NOT NULL,
     PRIMARY KEY CLUSTERED ([JobID] ASC),
     FOREIGN KEY ([CompanyID]) REFERENCES [dbo].[Company] ([CompanyID])
@@ -42,8 +42,8 @@ CREATE TABLE [dbo].[Candidate] (
     [Phone] NVARCHAR(15) NOT NULL,
     [Email] NVARCHAR(MAX) NOT NULL,
     [Address] NVARCHAR(MAX) NULL,
-    [CV] NVARCHAR(MAX) NULL, -- ��?ng d?n t?i CV c?a ?ng vi�n
-    [UserID] INT NOT NULL, -- Li�n k?t v?i User (Candidate)
+    [CV] NVARCHAR(MAX) NULL, -- Đường dẫn tới CV của ứng viên
+    [UserID] INT NOT NULL, -- Liên kết với User (Candidate)
     PRIMARY KEY CLUSTERED ([CandidateID] ASC),
     FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([UserID])
 );
@@ -54,7 +54,7 @@ CREATE TABLE [dbo].[Application] (
     [JobID] INT NOT NULL,
     [CandidateID] INT NOT NULL,
     [ApplicationDate] DATE NOT NULL,
-    [Status] NVARCHAR(50) NOT NULL, -- V� d?: 'Pending', 'Reviewed', 'Accepted', 'Rejected'
+    [Status] NVARCHAR(50) NOT NULL, -- Ví dụ: 'Pending', 'Reviewed', 'Accepted', 'Rejected'
     PRIMARY KEY CLUSTERED ([ApplicationID] ASC),
     FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]),
     FOREIGN KEY ([CandidateID]) REFERENCES [dbo].[Candidate] ([CandidateID])
@@ -64,17 +64,21 @@ CREATE TABLE [dbo].[Application] (
 CREATE TABLE [dbo].[JobCategory] (
     [CategoryID] INT IDENTITY(1, 1) NOT NULL,
     [CategoryName] NVARCHAR(MAX) NOT NULL,
+    [Description] NVARCHAR(MAX) NULL, -- Mô tả danh mục
+    [Status] BIT NULL DEFAULT 1, -- Trạng thái hoạt động
+    [CreatedDate] DATETIME NULL DEFAULT GETDATE(), -- Ngày tạo
+    [JobCount] INT NULL, -- Số lượng công việc
     PRIMARY KEY CLUSTERED ([CategoryID] ASC)
 );
 
---Bang JobCategoryMapping: D�ng �? li�n k?t c�ng vi?c v?i c�c danh m?c ng�nh ngh?.
+--Bang JobCategoryMapping: Dùng để liên kết công việc với các danh mục ngành nghề.
 CREATE TABLE [dbo].[JobCategoryMapping] (
     [JobID] INT NOT NULL,
     [CategoryID] INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([JobID], [CategoryID]), -- S? d?ng c? 2 c?t l�m kh�a ch�nh
-    FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]), -- Li�n k?t v?i Job
-    FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[JobCategory] ([CategoryID]) -- Li�n k?t v?i JobCategory
+    PRIMARY KEY CLUSTERED ([JobID], [CategoryID]), -- Sử dụng cả 2 cột làm khóa chính
+    FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]), -- Liên kết với Job
+    FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[JobCategory] ([CategoryID]) -- Liên kết với JobCategory
 );
 
--- Thay �?i quy?n s? h?u database
+-- Thay đổi quyền sở hữu database
 ALTER AUTHORIZATION ON DATABASE::DoAnWeb TO sa;
