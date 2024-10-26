@@ -1,14 +1,19 @@
-﻿--New Database: MyStore
--- Bang User: quan ly ca tai khoan cua Khach hang va Admin
+﻿-- New Database: My Job
+
+-- Bảng User: quản lý tài khoản của Khách hàng và Admin
 CREATE TABLE [dbo].[User] (
     [UserID] INT IDENTITY(1, 1) NOT NULL,
     [Username] NVARCHAR(255) NOT NULL,
     [Password] NCHAR(50) NOT NULL,
     [UserRole] NCHAR(1) NOT NULL, -- 'A' = Admin, 'C' = Candidate, 'R' = Recruiter
+    [Email] NVARCHAR(255) NULL, -- Thêm cột Email
+    [Status] NCHAR(1) NOT NULL DEFAULT 'A', -- Trạng thái, 'A' = Active, 'I' = Inactive
+    [LastLoginDate] DATETIME NULL, -- Thời gian đăng nhập lần cuối
+    [CreateDate] DATETIME NOT NULL DEFAULT GETDATE(), -- Ngày tạo tài khoản
     PRIMARY KEY CLUSTERED ([UserID] ASC)
 );
 
---Bang Company: luu thong tin cong ty tuyen dung
+-- Bảng Company: lưu thông tin công ty tuyển dụng
 CREATE TABLE [dbo].[Company] (
     [CompanyID] INT IDENTITY(1, 1) NOT NULL,
     [CompanyName] NVARCHAR(MAX) NOT NULL,
@@ -16,11 +21,12 @@ CREATE TABLE [dbo].[Company] (
     [CompanyPhone] NVARCHAR(15) NOT NULL,
     [CompanyEmail] NVARCHAR(MAX) NOT NULL,
     [UserID] INT NOT NULL, -- Liên kết với User (Recruiter)
+    [CompanyLogo] NVARCHAR(MAX) NULL, -- Thêm cột CompanyLogo để lưu đường dẫn hình ảnh công ty
     PRIMARY KEY CLUSTERED ([CompanyID] ASC),
     FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([UserID])
 );
 
---Bang Job: Lưu trữ thông tin các bài đăng tuyển dụng.
+-- Bảng Job: Lưu trữ thông tin các bài đăng tuyển dụng
 CREATE TABLE [dbo].[Job] (
     [JobID] INT IDENTITY(1, 1) NOT NULL,
     [CompanyID] INT NOT NULL,
@@ -35,7 +41,7 @@ CREATE TABLE [dbo].[Job] (
     FOREIGN KEY ([CompanyID]) REFERENCES [dbo].[Company] ([CompanyID])
 );
 
---Bang Candidate: luu thong tin ung vien
+-- Bảng Candidate: lưu thông tin ứng viên
 CREATE TABLE [dbo].[Candidate] (
     [CandidateID] INT IDENTITY(1, 1) NOT NULL,
     [FullName] NVARCHAR(MAX) NOT NULL,
@@ -48,7 +54,7 @@ CREATE TABLE [dbo].[Candidate] (
     FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([UserID])
 );
 
---Bang Application: luu thong tin ung tuyen
+-- Bảng Application: lưu thông tin ứng tuyển
 CREATE TABLE [dbo].[Application] (
     [ApplicationID] INT IDENTITY(1, 1) NOT NULL,
     [JobID] INT NOT NULL,
@@ -60,14 +66,18 @@ CREATE TABLE [dbo].[Application] (
     FOREIGN KEY ([CandidateID]) REFERENCES [dbo].[Candidate] ([CandidateID])
 );
 
---Bang JobCategory: luu thong tin danh muc cong viec
+-- Bảng JobCategory: lưu thông tin danh mục công việc
 CREATE TABLE [dbo].[JobCategory] (
     [CategoryID] INT IDENTITY(1, 1) NOT NULL,
     [CategoryName] NVARCHAR(MAX) NOT NULL,
+    [JobCount] INT NOT NULL DEFAULT 0, -- Số lượng công việc trong danh mục
+    [Description] NVARCHAR(MAX) NULL, -- Mô tả danh mục
+    [Status] NCHAR(1) NOT NULL DEFAULT 'A', -- Trạng thái, 'A' = Active, 'I' = Inactive
+    [CreateDate] DATETIME NOT NULL DEFAULT GETDATE(), -- Ngày tạo danh mục
     PRIMARY KEY CLUSTERED ([CategoryID] ASC)
 );
 
---Bang JobCategoryMapping: Dùng để liên kết công việc với các danh mục ngành nghề.
+-- Bảng JobCategoryMapping: dùng để liên kết công việc với các danh mục ngành nghề
 CREATE TABLE [dbo].[JobCategoryMapping] (
     [JobID] INT NOT NULL,
     [CategoryID] INT NOT NULL,
@@ -75,8 +85,6 @@ CREATE TABLE [dbo].[JobCategoryMapping] (
     FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]), -- Liên kết với Job
     FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[JobCategory] ([CategoryID]) -- Liên kết với JobCategory
 );
-ALTER TABLE [dbo].[User]
-ALTER COLUMN Email nvarchar(100);
+
 -- Thay đổi quyền sở hữu database
 ALTER AUTHORIZATION ON DATABASE::DoAnWeb TO sa;
-

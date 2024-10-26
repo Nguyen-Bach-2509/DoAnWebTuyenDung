@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3e8bb7f18c1f44658aa34c1e428da796" Name="Diagram1">
+      <Diagram DiagramId="5e3a156c3c344e0a8ecee511ea84ff94" Name="Diagram1">
         <EntityTypeShape EntityType="DoAnWebModel1.JobCategoryMapping" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

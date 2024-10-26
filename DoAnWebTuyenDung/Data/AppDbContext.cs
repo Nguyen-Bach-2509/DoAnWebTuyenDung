@@ -18,9 +18,9 @@ namespace DoAnWebTuyenDung.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<JobCategoryMapping>()
-            .HasRequired(e => e.Job)
-            .WithMany(c => c.JobCategoriesMapping)
-            .HasForeignKey(e => e.JobCategory);
+                .HasRequired(e => e.Job)
+                .WithMany(c => c.JobCategoryMappings) 
+                .HasForeignKey(e => e.CategoryID); //
         }
     }
- }
+}

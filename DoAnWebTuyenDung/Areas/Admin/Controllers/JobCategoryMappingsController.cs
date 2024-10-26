@@ -10,112 +10,107 @@ using DoAnWebTuyenDung.Models;
 
 namespace DoAnWebTuyenDung.Areas.Admin.Controllers
 {
-    public class JobsController : Controller
+    public class JobCategoryMappingsController : Controller
     {
-        private DoAnWebEntities2 db = new DoAnWebEntities2();
+        private DoAnWebEntities3 db = new DoAnWebEntities3();
 
-        // GET: Admin/Jobs
+        // GET: Admin/JobCategoryMappings
         public ActionResult Index()
         {
-            var jobs = db.Jobs.Include(j => j.Company);
-            return View(jobs.ToList());
+            return View(db.JobCategoryMappings.ToList());
         }
 
-        // GET: Admin/Jobs/Details/5
+        // GET: Admin/JobCategoryMappings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
-            if (job == null)
+            JobCategoryMapping jobCategoryMapping = db.JobCategoryMappings.Find(id);
+            if (jobCategoryMapping == null)
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return View(jobCategoryMapping);
         }
 
-        // GET: Admin/Jobs/Create
+        // GET: Admin/JobCategoryMappings/Create
         public ActionResult Create()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompanyID", "CompanyName");
             return View();
         }
 
-        // POST: Admin/Jobs/Create
+        // POST: Admin/JobCategoryMappings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobID,CompanyID,JobTitle,JobDescription,JobRequirements,SalaryRange,JobLocation,JobType,PostDate")] Job job)
+        public ActionResult Create([Bind(Include = "JobID,CategoryID")] JobCategoryMapping jobCategoryMapping)
         {
             if (ModelState.IsValid)
             {
-                db.Jobs.Add(job);
+                db.JobCategoryMappings.Add(jobCategoryMapping);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompanyID", "CompanyName", job.CompanyID);
-            return View(job);
+            return View(jobCategoryMapping);
         }
 
-        // GET: Admin/Jobs/Edit/5
+        // GET: Admin/JobCategoryMappings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
-            if (job == null)
+            JobCategoryMapping jobCategoryMapping = db.JobCategoryMappings.Find(id);
+            if (jobCategoryMapping == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompanyID", "CompanyName", job.CompanyID);
-            return View(job);
+            return View(jobCategoryMapping);
         }
 
-        // POST: Admin/Jobs/Edit/5
+        // POST: Admin/JobCategoryMappings/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobID,CompanyID,JobTitle,JobDescription,JobRequirements,SalaryRange,JobLocation,JobType,PostDate")] Job job)
+        public ActionResult Edit([Bind(Include = "JobID,CategoryID")] JobCategoryMapping jobCategoryMapping)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(job).State = EntityState.Modified;
+                db.Entry(jobCategoryMapping).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompanyID", "CompanyName", job.CompanyID);
-            return View(job);
+            return View(jobCategoryMapping);
         }
 
-        // GET: Admin/Jobs/Delete/5
+        // GET: Admin/JobCategoryMappings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
-            if (job == null)
+            JobCategoryMapping jobCategoryMapping = db.JobCategoryMappings.Find(id);
+            if (jobCategoryMapping == null)
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return View(jobCategoryMapping);
         }
 
-        // POST: Admin/Jobs/Delete/5
+        // POST: Admin/JobCategoryMappings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Job job = db.Jobs.Find(id);
-            db.Jobs.Remove(job);
+            JobCategoryMapping jobCategoryMapping = db.JobCategoryMappings.Find(id);
+            db.JobCategoryMappings.Remove(jobCategoryMapping);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

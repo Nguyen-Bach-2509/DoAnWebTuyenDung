@@ -34,7 +34,6 @@ CREATE TABLE [dbo].[Job] (
     PRIMARY KEY CLUSTERED ([JobID] ASC),
     FOREIGN KEY ([CompanyID]) REFERENCES [dbo].[Company] ([CompanyID])
 );
-
 --Bang Candidate: luu thong tin ung vien
 CREATE TABLE [dbo].[Candidate] (
     [CandidateID] INT IDENTITY(1, 1) NOT NULL,
@@ -59,24 +58,21 @@ CREATE TABLE [dbo].[Application] (
     FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]),
     FOREIGN KEY ([CandidateID]) REFERENCES [dbo].[Candidate] ([CandidateID])
 );
-
---Bang JobCategory: luu thong tin danh muc cong viec
+--Bang Jobcategory: luu thong tin danh muc cong viec
 CREATE TABLE [dbo].[JobCategory] (
     [CategoryID] INT IDENTITY(1, 1) NOT NULL,
     [CategoryName] NVARCHAR(MAX) NOT NULL,
     PRIMARY KEY CLUSTERED ([CategoryID] ASC)
 );
-
 --Bang JobCategoryMapping: Dùng để liên kết công việc với các danh mục ngành nghề.
 CREATE TABLE [dbo].[JobCategoryMapping] (
     [JobID] INT NOT NULL,
     [CategoryID] INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([JobID], [CategoryID]), -- Sử dụng cả 2 cột làm khóa chính
-    FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]), -- Liên kết với Job
-    FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[JobCategory] ([CategoryID]) -- Liên kết với JobCategory
+    FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]),
+    FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[JobCategory] ([CategoryID])
 );
-ALTER TABLE [dbo].[User]
-ALTER COLUMN Email nvarchar(100);
--- Thay đổi quyền sở hữu database
-ALTER AUTHORIZATION ON DATABASE::DoAnWeb TO sa;
+ALTER TABLE JobCategoryMapping
+ADD CONSTRAINT PK_JobCategoryMapping PRIMARY KEY (JobID);
 
+
+ALTER AUTHORIZATION ON DATABASE::DoAnWebTuyenDung TO sa;

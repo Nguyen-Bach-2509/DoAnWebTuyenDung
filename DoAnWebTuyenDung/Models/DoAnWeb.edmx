@@ -89,6 +89,11 @@
           <Property Name="Username" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="UserRole" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__Applicati__Candi__4316F928">
           <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
@@ -278,11 +283,11 @@
           </Key>
           <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Jobs" Relationship="Self.JobCategoryMapping" FromRole="JobCategory" ToRole="Job" />
-          <Property Name="JobCount" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobCount" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Jobs" Relationship="Self.JobCategoryMapping" FromRole="JobCategory" ToRole="Job" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -302,8 +307,13 @@
           <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="UserRole" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Candidates" Relationship="Self.FK__Candidate__UserI__3F466844" FromRole="User" ToRole="Candidate" />
           <NavigationProperty Name="Companies" Relationship="Self.FK__Company__UserID__398D8EEE" FromRole="User" ToRole="Company" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Applicati__Candi__4316F928">
           <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
@@ -369,7 +379,7 @@
           <End Role="JobCategory" Type="Self.JobCategory" Multiplicity="*" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DoAnWebEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DoAnWebEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applications" EntityType="Self.Application" />
           <EntitySet Name="Candidates" EntityType="Self.Candidate" />
           <EntitySet Name="Companies" EntityType="Self.Company" />
@@ -407,7 +417,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DoAnWebModelStoreContainer" CdmEntityContainer="DoAnWebEntities2">
+        <EntityContainerMapping StorageEntityContainer="DoAnWebModelStoreContainer" CdmEntityContainer="DoAnWebEntities4">
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="DoAnWebModel.Application">
               <MappingFragment StoreEntitySet="Application">
@@ -462,12 +472,12 @@
           <EntitySetMapping Name="JobCategories">
             <EntityTypeMapping TypeName="DoAnWebModel.JobCategory">
               <MappingFragment StoreEntitySet="JobCategory">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="JobCount" ColumnName="JobCount" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobCount" ColumnName="JobCount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -485,10 +495,15 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DoAnWebModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

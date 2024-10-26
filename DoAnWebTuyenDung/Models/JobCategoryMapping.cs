@@ -11,12 +11,13 @@ namespace DoAnWebTuyenDung.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class JobCategoryMapping
     {
         public int JobID { get; set; }
         public Job Job { get; set; }
         public int CategoryID { get; set; }
         public JobCategory JobCategory { get; set; }
+
     }
 }

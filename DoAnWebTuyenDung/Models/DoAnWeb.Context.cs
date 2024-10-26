@@ -13,10 +13,10 @@ namespace DoAnWebTuyenDung.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DoAnWebEntities2 : DbContext
+    public partial class DoAnWebEntities4 : DbContext
     {
-        public DoAnWebEntities2()
-            : base("name=DoAnWebEntities2")
+        public DoAnWebEntities4()
+            : base("name=DoAnWebEntities4")
         {
         }
     
