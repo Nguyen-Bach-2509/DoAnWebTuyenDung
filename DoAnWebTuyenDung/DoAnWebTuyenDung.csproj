@@ -128,67 +128,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\JobCategoryMappingsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\DbContextOptions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Application.cs">
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Candidate.cs">
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Company.cs">
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DoAnWeb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DoAnWeb.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DoAnWeb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DoAnWeb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DoAnWeb.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Job.cs">
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobCategory.cs">
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobCategoryMapping.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JobCategoryMapping.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobCategoryMapping.cs">
-      <DependentUpon>JobCategoryMapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobCategoryMapping.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JobCategoryMapping.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobCategoryMapping1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JobCategoryMapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>DoAnWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -213,26 +157,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DoAnWeb.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DoAnWeb.edmx</DependentUpon>
-      <LastGenOutput>DoAnWeb.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DoAnWeb.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DoAnWeb.edmx</DependentUpon>
-      <LastGenOutput>DoAnWeb.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\JobCategoryMapping.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JobCategoryMapping.edmx</DependentUpon>
-      <LastGenOutput>JobCategoryMapping.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\JobCategoryMapping.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JobCategoryMapping.edmx</DependentUpon>
-      <LastGenOutput>JobCategoryMapping1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -243,30 +167,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
-    <EntityDeploy Include="Models\JobCategoryMapping.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>JobCategoryMapping.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\JobCategoryMapping.edmx.diagram">
-      <DependentUpon>JobCategoryMapping.edmx</DependentUpon>
-    </Content>
-    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\JobCategoryMappings\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\JobCategoryMappings\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\JobCategoryMappings\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\JobCategoryMappings\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\JobCategoryMappings\Index.cshtml" />
-    <EntityDeploy Include="Models\DoAnWeb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DoAnWeb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DoAnWeb.edmx.diagram">
-      <DependentUpon>DoAnWeb.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -300,6 +200,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

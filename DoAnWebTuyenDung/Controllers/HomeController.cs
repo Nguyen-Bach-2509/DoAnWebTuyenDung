@@ -1,5 +1,5 @@
 ﻿using DoAnWebTuyenDung.Data;
-using DoAnWebTuyenDung.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,6 @@ namespace DoAnWebTuyenDung.Controllers
 {
     public class HomeController : Controller
     {
-        private DoAnWebEntities4 db = new DoAnWebEntities4();
         public ActionResult Index()
         {
             using (var context = new ApplicationDbContext())
