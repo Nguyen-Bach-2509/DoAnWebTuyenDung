@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.Company>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Danh Sách Công Ty</h2>
+
+<div class="container mt-4">
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th class="text-center">@Html.DisplayNameFor(model => model.company_logo)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.company_name)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.industry)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.description)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.location)</th>
+                <th class="text-center">Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        <img src="@item.company_logo" alt="Logo" style="width: 50px; height: auto;">
+                    </td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.company_name)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.industry)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.description)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.location)</td>
+                    <td class="text-center">
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.company_id }, new { @class = "btn btn-outline-warning btn-sm" })
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.company_id }, new { @class = "btn btn-outline-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end mb-3">
+        @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

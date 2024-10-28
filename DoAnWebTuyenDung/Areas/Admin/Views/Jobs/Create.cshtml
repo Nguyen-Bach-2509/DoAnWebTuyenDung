@@ -1,0 +1,113 @@
+﻿@model DoAnWebTuyenDung.Models.Job
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Thêm Công Việc</h2>
+
+<div class="container mt-4">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+            <!-- Header của card -->
+            <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
+                <h5 class="mb-0">Thêm Công Việc</h5>
+            </div>
+            <div class="card-body" style="background-color: #e9ecef;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Trường Công ty -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.company_id, "Công ty", new { @class = "form-label fw-bold" })
+                    @Html.DropDownList("company_id", null, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+                    @Html.ValidationMessageFor(model => model.company_id, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Danh mục -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.category_id, "Danh mục", new { @class = "form-label fw-bold" })
+                    @Html.DropDownList("category_id", null, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+                    @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Tiêu đề -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.title, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Các trường khác tương tự -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.description, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.requirements, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.requirements, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.requirements, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.location, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.salary, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3 text-center">
+                    @Html.Label("Loại công việc", new { @class = "form-label fw-bold" })
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(model => model.employment_type, "full-time", new { @class = "form-check-input", id = "employmentTypeFullTime" })
+                            <label class="form-check-label" for="employmentTypeFullTime">Toàn thời gian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(model => model.employment_type, "part-time", new { @class = "form-check-input", id = "employmentTypePartTime" })
+                            <label class="form-check-label" for="employmentTypePartTime">Bán thời gian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(model => model.employment_type, "internship", new { @class = "form-check-input", id = "employmentTypeInternship" })
+                            <label class="form-check-label" for="employmentTypeInternship">Thực tập</label>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.employment_type, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.deadline, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.deadline, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.deadline, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.is_featured, new { @class = "form-label fw-bold" })
+                    <div class="form-check mx-auto" style="max-width: 600px;">
+                        @Html.EditorFor(model => model.is_featured)
+                        @Html.ValidationMessageFor(model => model.is_featured, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="text-center mt-4">
+                    <input type="submit" value="Thêm Công Việc" class="btn btn-success" />
+                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ms-2" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

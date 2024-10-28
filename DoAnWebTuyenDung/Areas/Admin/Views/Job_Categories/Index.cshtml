@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.Job_Categories>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Danh Sách Loại Công Việc</h2>
+
+<div class="container mt-4">
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th class="text-center">@Html.DisplayNameFor(model => model.category_name)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.description)</th>
+                <th class="text-center">Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.category_name)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.description)</td>
+                    <td class="text-center">
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.category_id }, new { @class = "btn btn-outline-warning btn-sm" })
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.category_id }, new { @class = "btn btn-outline-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end mb-3">
+        @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

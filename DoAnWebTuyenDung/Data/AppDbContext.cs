@@ -1,5 +1,4 @@
-﻿using DoAnWebTuyenDung.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,17 +9,6 @@ namespace DoAnWebTuyenDung.Data
     {
         public ApplicationDbContext() : base("DoAnWebEntities")
         { }
-            public DbSet<Job> Jobs { get; set; }
-        public DbSet<JobCategory> JobCategories { get; set; }
-        public DbSet<JobCategoryMapping> JobCategoryMappings { get; set; }
 
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<JobCategoryMapping>()
-                .HasRequired(e => e.Job)
-                .WithMany(c => c.JobCategoryMappings) 
-                .HasForeignKey(e => e.CategoryID); //
-        }
     }
 }

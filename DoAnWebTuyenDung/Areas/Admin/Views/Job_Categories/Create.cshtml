@@ -1,0 +1,49 @@
+﻿@model DoAnWebTuyenDung.Models.Job_Categories
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Thêm Danh Mục Công Việc</h2>
+
+<div class="container mt-4">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+            <!-- Header của card -->
+            <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
+                <h5 class="mb-0">Thêm Danh Mục Công Việc</h5>
+            </div>
+            <div class="card-body" style="background-color: #e9ecef;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <!-- Trường Tên Loại Công Việc -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.category_name, "Tên Danh Mục Công Việc", new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.category_name, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Mô Tả -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.description, "Mô Tả", new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Nút Lưu -->
+                <div class="text-center mt-4">
+                    <input type="submit" value="Tạo Mới" class="btn btn-success" />
+                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ms-2" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

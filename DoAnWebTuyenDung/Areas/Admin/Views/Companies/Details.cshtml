@@ -1,0 +1,46 @@
+﻿@model DoAnWebTuyenDung.Models.Company
+
+@{
+    ViewBag.Title = "Chi Tiết Công Ty";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Chi Tiết Công Ty</h2>
+
+<div class="container mt-4">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+        <!-- Header của card -->
+        <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
+            <h5 class="mb-0">Thông Tin Công Ty</h5>
+        </div>
+        <div class="card-body" style="background-color: #e9ecef;">
+            <dl class="row justify-content-center">
+                <dt class="col-sm-3">Tên Công Ty:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.company_name)</dd>
+
+                <dt class="col-sm-3">Ngành Nghề:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.industry)</dd>
+
+                <dt class="col-sm-3">Mô Tả:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.description)</dd>
+
+                <dt class="col-sm-3">Địa Điểm:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.location)</dd>
+
+                <dt class="col-sm-3">Logo Công Ty:</dt>
+                <dd class="col-sm-7">
+                    <img src="@Model.company_logo" alt="Logo Công Ty" style="width: 100px; height: auto;" />
+                </dd>
+            </dl>
+
+            <div class="text-center mt-4">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.company_id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-secondary ms-2" })
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

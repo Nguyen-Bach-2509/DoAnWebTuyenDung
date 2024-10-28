@@ -1,0 +1,57 @@
+﻿@model DoAnWebTuyenDung.Models.Candidate
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3" style="color:#ff4d4d">Xóa Thông Tin Ứng Viên</h2>
+
+<div class="container mt-4">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+        <!-- Tiêu đề và màu nền của card-header -->
+        <div class="card-header text-center" style="background-color: #ff4d4d; color: #ffffff;">
+            <h5 class="mb-0">Bạn có chắc chắn muốn xóa ứng viên này không?</h5>
+        </div>
+        <div class="card-body" style="background-color: #f8d7da;">
+            <div class="text-center text-danger fw-bold mb-4">Thông tin ứng viên sẽ bị xóa vĩnh viễn.</div>
+
+            <!-- Thông tin ứng viên -->
+            <dl class="row justify-content-center">
+                <dt class="col-sm-3">Họ Tên:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.full_name)</dd>
+
+                <dt class="col-sm-3">Số Điện Thoại:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.phone)</dd>
+
+                <dt class="col-sm-3">Email:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.email)</dd>
+
+                <dt class="col-sm-3">Kinh Nghiệm:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.experience)</dd>
+
+                <dt class="col-sm-3">CV:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.resume)</dd>
+
+                <dt class="col-sm-3">Địa Điểm:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.location)</dd>
+
+                <dt class="col-sm-3">Người Dùng:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.User.username)</dd>
+            </dl>
+
+            <!-- Form xác nhận xóa -->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="text-center mt-4">
+                    <input type="submit" value="Xóa" class="btn btn-danger" />
+                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ms-2" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

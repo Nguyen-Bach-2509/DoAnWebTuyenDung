@@ -1,0 +1,45 @@
+﻿@model DoAnWebTuyenDung.Models.Application
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Thông Tin Chi Tiết Đơn Ứng Tuyển</h2>
+
+<div class="container mt-4">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+        <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
+            <h5 class="mb-0">Chi Tiết Đơn Ứng Tuyển</h5>
+        </div>
+        <div class="card-body" style="background-color: #e9ecef;">
+            <dl class="row justify-content-center">
+                <dt class="col-sm-3">Trạng Thái:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.status)</dd>
+
+                <dt class="col-sm-3">Ngày Nộp:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.applied_at)</dd>
+
+                <dt class="col-sm-3">Ngày Cập Nhật:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.updated_at)</dd>
+
+                <dt class="col-sm-3">Ghi Chú:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.notes)</dd>
+
+                <dt class="col-sm-3">Ứng Viên:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.Candidate.full_name)</dd>
+
+                <dt class="col-sm-3">Công Việc:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.Job.title)</dd>
+            </dl>
+
+            <div class="text-center mt-4">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.application_id }, new { @class = "btn btn-outline-primary me-2" })
+                @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

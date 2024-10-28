@@ -127,12 +127,66 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApplicationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CandidatesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CompaniesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployersController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JobsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Job_CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReviewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\DbContextOptions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Application.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Candidate.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DoAn.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoAn.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DoAn.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DoAn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoAn.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employer.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Job.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Job_Categories.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notification.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>DoAn.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -157,6 +211,16 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DoAn.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DoAn.edmx</DependentUpon>
+      <LastGenOutput>DoAn.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DoAn.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DoAn.edmx</DependentUpon>
+      <LastGenOutput>DoAn.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -167,6 +231,53 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <EntityDeploy Include="Models\DoAn.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DoAn.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DoAn.edmx.diagram">
+      <DependentUpon>DoAn.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Job_Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Job_Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Job_Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Job_Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Job_Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Companies\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Companies\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Companies\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Companies\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Companies\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Employers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Employers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Employers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Employers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Employers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Candidates\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Candidates\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Candidates\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Candidates\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Candidates\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Applications\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Applications\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Applications\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Applications\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Applications\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Reviews\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Reviews\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Reviews\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Reviews\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Reviews\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -194,13 +305,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
     <Content Include="Views\Home\TrangChu.cshtml" />
-    <Content Include="Views\Shared\_Register.cshtml" />
-    <Content Include="Views\Home\TrangChu2.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\LoginLogout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

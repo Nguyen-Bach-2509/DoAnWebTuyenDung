@@ -1,0 +1,48 @@
+﻿@model DoAnWebTuyenDung.Models.Candidate
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Thông Tin Chi Tiết Ứng Viên</h2>
+
+<div class="container mt-4">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+        <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
+            <h5 class="mb-0">Chi Tiết Ứng Viên</h5>
+        </div>
+        <div class="card-body" style="background-color: #e9ecef;">
+            <dl class="row justify-content-center">
+                <dt class="col-sm-3">Họ Tên:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.full_name)</dd>
+
+                <dt class="col-sm-3">Số Điện Thoại:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.phone)</dd>
+
+                <dt class="col-sm-3">Email:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.email)</dd>
+
+                <dt class="col-sm-3">Kinh Nghiệm:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.experience)</dd>
+
+                <dt class="col-sm-3">CV:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.resume)</dd>
+
+                <dt class="col-sm-3">Địa Điểm:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.location)</dd>
+
+                <dt class="col-sm-3">Tên Người Dùng:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.User.username)</dd>
+            </dl>
+
+            <div class="text-center mt-4">
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.candidate_id }, new { @class = "btn btn-outline-primary me-2" })
+                @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,5 +1,575 @@
 ﻿@{
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
+<style>
+    .banner {
+        position: relative;
+        background: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 1;
+    }
 
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ mờ 50% */
+            z-index: -1; /* Lớp phủ dưới nội dung */
+        }
+
+    .banner-content {
+        text-align: left;
+        max-width: 600px;
+    }
+
+        .banner-content h1 {
+            font-size: 48px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .banner-content p {
+            font-size: 18px;
+            text-align: center;
+            padding: 30px;
+        }
+
+    .banner-buttons {
+        display: flex;
+    }
+
+        .banner-buttons a {
+            text-decoration: none;
+            color: #FF4C4C;
+            background-color: transparent;
+            border: 1px solid #FF4C4C;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: auto;
+            font-weight: bold;
+        }
+
+
+
+            .banner-buttons a:hover {
+                background-color: #FF4C4C; /* Darker green on hover */
+                color: white;
+            }
+
+
+
+    .white-border {
+        padding: 6px;
+        width: 160px; /* Reduced the width for better alignment */
+        margin: auto;
+        background: white;
+        border-radius: 15px;
+    }
+
+    .search-section {
+        position: relative; /* Để các phần tử bên trong có thể sử dụng position absolute */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        background: linear-gradient(90deg, rgba(254,255,100,1) 0%, rgba(239,122,83,1) 35%, rgba(255,166,0,1) 100%);
+        padding: 20px;
+    }
+
+    .mag-glass {
+        position: absolute;
+        width: 60px; /* Điều chỉnh kích thước của hình ảnh */
+        height: auto;
+        top: 60px; /* Điều chỉnh vị trí theo nhu cầu của bạn */
+        left: 1150px; /* Điều chỉnh vị trí theo nhu cầu của bạn */
+    }
+
+    .corner-image {
+        position: absolute;
+        top: 40px; /* Điều chỉnh vị trí theo nhu cầu của bạn */
+        left: 300px; /* Điều chỉnh vị trí theo nhu cầu của bạn */
+        width: 100px; /* Điều chỉnh kích thước của hình ảnh */
+        height: auto;
+    }
+
+    .search-section form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-field {
+        margin: 0 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .search-field label {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .search-field input,
+        .search-field select {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+    .search-button {
+        margin-left: 10px;
+    }
+
+        .search-button button {
+            padding: 12px 20px;
+            background-color: #FF4C4C;
+            color: #fff;
+            border: none;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .search-button button:hover {
+                background-color: #1ecdf0;
+            }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 50px;
+        margin-top: 100px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .category {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+        .category:hover {
+            transform: scale(1.05);
+        }
+
+        .category img {
+            width: 50px;
+            margin-bottom: 15px;
+        }
+
+        .category h3 {
+            font-size: 17px;
+            padding: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .category i {
+            font-size: 25px;
+        }
+
+        .category p {
+            font-size: 16px;
+            color: #FF4C4C;
+        }
+
+
+
+    .container1 {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .tabs {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .tabs a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            padding-bottom: 5px;
+        }
+
+            .tabs a.active {
+                border-bottom: 2px solid green;
+            }
+
+    .job-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .job-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        transition: transform 0.2s;
+    }
+
+        .job-item:hover {
+            transform: scale(1.02);
+        }
+
+    .job-info {
+        display: flex;
+        align-items: center;
+    }
+
+        .job-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+    .job-details h3 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .job-details p {
+        margin: 5px 0;
+        color: gray;
+    }
+
+    .job-salary {
+        color: green;
+        font-weight: bold;
+    }
+
+    .job-action {
+        text-align: right;
+    }
+
+        .job-action button {
+            background-color: #FF4C4C;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .job-action button:hover {
+                background-color: #1ecdf0;
+            }
+
+        .job-action .date {
+            color: gray;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+    .container2 {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .testimonial-section {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .testimonial {
+        background-color: #e8f8f3;
+        padding: 70px 70px;
+        border-radius: 10px;
+        width: 40%;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .testimonial.highlight {
+            background-color: #FF4C4C;
+            color: white;
+        }
+
+        .testimonial p {
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .testimonial img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+
+        .testimonial h4 {
+            margin: 10px 0 5px 0;
+            font-size: 18px;
+        }
+
+        .testimonial small {
+            color: #ffab57;
+        }
+
+    .pagination {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+        .pagination span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: gray;
+            margin: 0 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+            .pagination span.active {
+                background-color: green;
+            }
+
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Find The Best Startup Job That Fits You</h1>
+            <p>Kết nối đúng người, đúng thời, đúng hướng.</p>
+            <div class="banner-buttons">
+                <a class="start-btn" href="#">THAM KHẢO NGAY!</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="search-section">
+        <img src="https://pngfre.com/wp-content/uploads/magnifying-glass-10-942x1024.png" class="mag-glass" />
+        <img src="https://png.pngtree.com/png-vector/20240708/ourmid/pngtree-palm-tree-leaves-overlay-texture-tropical-border-of-green-plants-fresh-png-image_12959690.png" class="corner-image">
+        <form>
+            <div class="search-field">
+                <label for="keyword">Từ Khóa:</label>
+                <input type="text" id="keyword" placeholder="Nhập Từ Khóa">
+            </div>
+
+            <div class="search-field">
+                <label for="category">Ngành:</label>
+                <select id="category">
+                    <option value="">Chọn Mảng / Ngành</option>
+                    <option value="IT">IT</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Tài Chính</option>
+                </select>
+            </div>
+
+            <div class="search-field">
+                <label for="location">Vị Trí:</label>
+                <input type="text" id="location" placeholder="Nhập Vị Trí">
+            </div>
+
+            <div class="search-button">
+                <button type="submit">Tìm Kiếm</button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <h1>KHÁM PHÁ CÁC LOẠI NGÀNH NGHỀ</h1>
+        <div class="grid">
+            <div class="category">
+                <i class="fas fa-desktop"></i>
+                <h3>Lập trình viên</h3>
+                <p>123 Vacancy</p>
+            </div>
+            <div class="category">
+                <i class="fas fa-headset"></i>
+                <h3>Quản lý dự án IT</h3>
+                <p>123 Vacancy</p>
+            </div>
+            <div class="category">
+                <i class="fas fa-user-tie"></i>
+                <h3>Kiểm thử phần mềm</h3>
+                <p>123 Vacancy</p>
+            </div>
+            <div class="category">
+                <i class="fas fa-tools"></i>
+                <h3>Kỹ sư hệ thống</h3>
+                <p>123 Vacancy</p>
+            </div>
+            <div class="category">
+                <i class="fas fa-chart-line"></i>
+                <h3>Phân tích dữ liệu</h3>
+                <p>123 Vacancy</p>
+            </div>
+            <div class="category">
+                <i class="fas fa-globe"></i>
+                <h3>Thiết kế UX/UI</h3>
+                <p>123 Vacancy</p>
+            </div>
+            <div class="category">
+                <i class="fas fa-book-reader"></i>
+                <h3>Kỹ sư DevOps</h3>
+                <p>123 Vacancy</p>
+            </div>
+            <div class="category">
+                <i class="fas fa-user-shield"></i>
+                <h3>Chuyên viên bảo mật</h3>
+                <p>123 Vacancy</p>
+            </div>
+        </div>
+    </div>
+    <div class="container1">
+        <h1>DANH SÁCH VIỆC LÀM</h1>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <a href="#" class="active">Featured</a>
+            <a href="#">Full Time</a>
+            <a href="#">Part Time</a>
+        </div>
+
+        <!-- Job List -->
+        <ul class="job-list">
+            <li class="job-item">
+                <div class="job-info">
+                    <img src="https://www.aeonmall-tanphuceladon.com.vn/wp-content/uploads/2019/06/USHI-MANIA.png" alt="Company Logo">
+                    <div class="job-details">
+                        <h3>Nhân Viên bán hàng</h3>
+                        <p>Hồ Chí Minh City, Tân Bình | Full Time | <span class="job-salary">$123 - $456</span></p>
+                    </div>
+                </div>
+                <div class="job-action">
+                    <button>Apply Now</button>
+                    <p class="date">Date Line: 01 Jan, 2025</p>
+                </div>
+            </li>
+
+            <li class="job-item">
+                <div class="job-info">
+                    <img src="https://www.aeonmall-tanphuceladon.com.vn/wp-content/uploads/2019/04/koithe.jpg" alt="Company Logo">
+                    <div class="job-details">
+                        <h3>Nhân Viên Phục Vụ</h3>
+                        <p>Hồ Chí Minh City, Bình Tân  | Part Time | <span class="job-salary">$123 - $456</span></p>
+                    </div>
+                </div>
+                <div class="job-action">
+                    <button>Apply Now</button>
+                    <p class="date">Date Line: 01 Jan, 2025</p>
+                </div>
+            </li>
+
+            <li class="job-item">
+                <div class="job-info">
+                    <img src="https://www.aeonmall-tanphuceladon.com.vn/wp-content/uploads/2020/05/dookki-logo.png" alt="Company Logo">
+                    <div class="job-details">
+                        <h3>Quản Lý Cửa Hàng</h3>
+                        <p>Hồ Chí Minh City, Tân Phú | Full Time | <span class="job-salary">$ Thương lượng</span></p>
+                    </div>
+                </div>
+                <div class="job-action">
+                    <button>Apply Now</button>
+                    <p class="date">Date Line: 01 Jan, 2025</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="container2">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <!-- Browse More Jobs Button -->
+
+            <button style="background-color: #27ae60; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Browse More Jobs</button>
+        </div>
+
+        <!-- Testimonials Section -->
+        <h1>PHẢN HỒI TỪ CÁC ỨNG VIÊN</h1>
+        <div class="testimonial-section">
+            <div class="testimonial">
+                <p>"Tôi đã tìm được một công việc phù hợp qua trang web này. Quy trình tuyển dụng rất nhanh chóng và hiệu quả."</p>
+                <img src="https://scontent-hkg4-1.xx.fbcdn.net/v/t39.30808-6/461590063_122175523892131143_5934989252833511535_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFKvjSEuh5oSwcYgvTeLAWL5EhgpCtytTfkSGCkK3K1NxNA1TsEPuksuGQo8br9WI5HkGwbGGcy0isH2K1ulPeu&_nc_ohc=05Ep4xqUyk4Q7kNvgEy8R7C&_nc_zt=23&_nc_ht=scontent-hkg4-1.xx&_nc_gid=Ae_hNfiPTU3z076nvJPKsKy&oh=00_AYCeRl_VT6-VO9M926bc8LCp8TDWGtyr27PDNW-9s9iLNw&oe=67131046" alt="Client Photo">
+                <h4>Nguyễn Công Bách</h4>
+                <small>Nhân viên Kinh doanh</small>
+            </div>
+
+            <div class="testimonial highlight">
+                <p>"Trang web tuyển dụng cung cấp nhiều lựa chọn việc làm chất lượng, giúp tôi kết nối với nhà tuyển dụng dễ dàng."</p>
+                <img src="https://scontent-hkg1-2.xx.fbcdn.net/v/t39.30808-6/455829865_1232162641354304_6300215301009424829_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGoa3YzV44xJnwg9HnF74Q5N9PXY171Xh8309djXvVeH4SjG72U3n05NtAKZNrq3vxy75TlkxJKnXxpe2TrQOjp&_nc_ohc=eze9zmA6AH4Q7kNvgEEi8vf&_nc_zt=23&_nc_ht=scontent-hkg1-2.xx&_nc_gid=AdYN3FATnAWaQF9MNwYFief&oh=00_AYAvFwGmVOTUIiEp4DZZ7rbwnoIDvipVSu-6EuY3WpoSqg&oe=671308ED" alt="Client Photo">
+                <h4>Nguyễn Hữu Hiền</h4>
+                <small>Chuyên viên Marketing</small>
+            </div>
+
+            <div class="testimonial">
+                <p>"Tôi rất hài lòng với cách tiếp cận của các nhà tuyển dụng qua trang web này. Nó giúp tôi tìm việc dễ dàng hơn."</p>
+                <img src="https://scontent-hkg1-2.xx.fbcdn.net/v/t39.30808-6/460181816_1032200955038693_4339807705180908342_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFFgPvDJOlmsaxeX37ZoTLr0x1Aqa5V3orTHUCprlXeimPmIGI9dBEA9ILCfQnxW4HczCpNeOa9qgbKDjctKwGw&_nc_ohc=Dep8ivaIXpsQ7kNvgHY3VbJ&_nc_zt=23&_nc_ht=scontent-hkg1-2.xx&_nc_gid=AS75wRiTYb07faUEuuzyCB_&oh=00_AYBXY5m0U8SxMgPCvYXi3klQgLYmm1k4dXyd5jHckYhVOA&oe=67131010" alt="Client Photo">
+                <h4>Lê Trần Đăng Khoa</h4>
+                <small>Nhân viên Thiết kế</small>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>
 

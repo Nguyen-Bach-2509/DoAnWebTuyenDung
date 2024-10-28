@@ -7,25 +7,80 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
     <style>
-        .navbar-custom {
-            background-color: #28a745; /* Use the same green color as in the user interface */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .navbar-brand, .nav-link, footer {
-            color: white; /* Make links and text white for better contrast */
+        body {
+            font-family: 'Varela Round', sans-serif;
+            padding: 0;
         }
 
-            .nav-link:hover {
-                color: #ddd; /* Lighter hover color */
+        header {
+            display: flex;
+            justify-content: space-between;
+            height: 100px;
+            align-items: center;
+            padding: 5px 15px;
+            background-color: #28a745;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+            .logo img {
+                width: 100px;
+                height: 100px;
             }
 
-        h2, h5 {
-            color: #28a745; /* Use the green for section titles */
+        .logo-text p {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+            nav ul li {
+                margin: 0 20px;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 16px;
+                    transition: color 0.3s ease;
+                }
+
+                    nav ul li a:hover {
+                        color: #ddd;
+                    }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         footer {
-            background-color: #333; /* Dark footer as in the user layout */
+            background-color: #333;
             padding: 10px;
             color: #fff;
             text-align: center;
@@ -49,26 +104,28 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark navbar-custom">
-        <div class="container">
-            @Html.ActionLink("Bảng điều khiển Quản trị", "Index", "Home", new { area = "admin" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" title="Chuyển đổi điều hướng" aria-controls="navbarAdmin"
-                    aria-expanded="false" aria-label="Chuyển đổi điều hướng">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarAdmin">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">@Html.ActionLink("Trang chủ Quản trị", "Index", "Home", new { area = "admin" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Quản lý Người dùng", "Index", "User", new { area = "admin" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Quản lý Công ty", "Index", "Company", new { area = "admin" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Quản lý Danh mục", "Index", "JobCategories", new { area = "admin" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Quản lý Công việc", "Index", "Jobs", new { area = "admin" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Quản lý Ứng viên", "Index", "Candidate", new { area = "admin" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Quản lý Đơn ứng tuyển", "Index", "Application", new { area = "admin" }, new { @class = "nav-link" })</li>
-                </ul>
+    <header>
+        <div class="logo">
+            <img src="~/Content/vieclam24h.jpg" alt="Vieclam24h logo" />
+            <div class="logo-text">
+                <p>KIẾM VIỆC LÀM ONLINE</p>
             </div>
         </div>
-    </nav>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Trang chủ Quản trị", "Index", "Home", new { area = "admin" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Quản lý Người dùng", "Index", "User", new { area = "admin" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Quản lý Công ty", "Index", "Company", new { area = "admin" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Quản lý Danh mục", "Index", "JobCategories", new { area = "admin" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Quản lý Công việc", "Index", "Jobs", new { area = "admin" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Quản lý Ứng viên", "Index", "Candidate", new { area = "admin" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Quản lý Đơn ứng tuyển", "Index", "Application", new { area = "admin" }, new { @class = "nav-link" })</li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" class="login">ĐĂNG NHẬP</a>
+        </div>
+    </header>
 
     <div class="container body-content">
         <div class="text-center my-4">
