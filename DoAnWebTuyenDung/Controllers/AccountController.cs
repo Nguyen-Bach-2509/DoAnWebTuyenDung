@@ -9,19 +9,28 @@ namespace DoAnWebTuyenDung.Controllers
     {
         private DoAnEntities db = new DoAnEntities();
 
-        // GET: Register
+        // GET: Account/Register
         public ActionResult Register()
         {
             return View();
         }
-        // POST: Register
+
+        // POST: Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "username,password,email")] User user)
+        public ActionResult Register([Bind(Include = "username,password,email,role")] User user)
         {
+            
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
             if (ModelState.IsValid)
             {
-                // Kiểm tra xem tên người dùng đã tồn tại trong cơ sở dữ liệu chưa
+                // Kiểm tra xem tên người dùng đã tồn tại hay chưa
                 if (db.Users.Any(u => u.username == user.username))
                 {
                     ModelState.AddModelError("username", "Tên người dùng đã tồn tại. Vui lòng chọn tên khác.");
@@ -29,26 +38,56 @@ namespace DoAnWebTuyenDung.Controllers
                 }
 
                 // Gán các giá trị mặc định cho người dùng mới
-                user.role = "User";
                 user.created_at = DateTime.Now;
                 user.updated_at = DateTime.Now;
-
+                user.role = "EMPLOYER";
                 db.Users.Add(user);
                 db.SaveChanges();
 
-                // Sử dụng TempData để thông báo về sự thành công của việc đăng ký
+                // Thông báo đăng ký thành công
                 TempData["SuccessMessage"] = "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.";
-
-                // Điều hướng tới trang đăng nhập hoặc trang xác nhận
-                return RedirectToAction("LoginLogout", "Account"); // Giả sử trang Login nằm trong AccountController
+                return RedirectToAction("Login", "Account");
             }
 
             return View(user);
         }
 
-        public ActionResult LoginLogout()
+        // GET: Account/Login
+        public ActionResult Login()
         {
             return View();
+        }
+
+        // POST: Account/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string username, string password)
+        {
+            var user = db.Users.FirstOrDefault(u => u.username == username && u.password == password);
+
+            if (user != null)
+            {
+                // Đăng nhập thành công, lưu thông tin vào Session
+                Session["UserId"] = user.user_id;
+                Session["Username"] = user.username;
+                Session["Role"] = user.role;
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            else
+            {
+                ViewBag.ErrorMessage = "Tên người dùng hoặc mật khẩu không đúng.";
+                return View();
+            }
+
+        }
+
+        // GET: Account/Logout
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
-
 
 <style>
 
@@ -30,6 +28,14 @@
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+    .logo {
+        margin-bottom: 25px;
+    }
+
+        .logo img {
+            max-width: 150px; /* Adjust logo size */
+            height: auto;
+        }
 
     .activation-message {
         background-color: #e6ffe6;
@@ -122,19 +128,28 @@
 </head>
 <body>
     <div class="container">
+        <div class="logo">
+            <a href="~/Home/TrangChu">
+                <img src="~/Content/vieclam24h.jpg" alt="Vieclam24h Logo" />
+            </a>
+        </div>
         <h2>Đăng nhập để tiếp tục</h2>
-        <form class="login-form">
-            <label for="email"><strong>Email hoặc Tên Đăng nhập</strong></label>
-            <input type="email" id="email" placeholder="Email or Username" required>
+        <form class="login-form" method="post" action="@Url.Action("Login", "Account")">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="username"><strong>Email hoặc Tên Đăng nhập</strong></label>
+                <input type="text" id="username" name="username" placeholder="Email or Username" class="form-control" required>
+            </div>
 
-            <label for="password"><strong>Mật Khẩu</strong></label>
-            <input type="password" id="password" placeholder="Mật khẩu" required>
+            <div class="form-group">
+                <label for="password"><strong>Mật Khẩu</strong></label>
+                <input type="password" id="password" name="password" placeholder="Mật khẩu" class="form-control" required>
+            </div>
 
             <button type="submit">Đăng Nhập</button>
             <a href="#" class="forgot-password">Quên mật khẩu?</a>
         </form>
-        <p class="signup-link">Chưa có tài khoản? <a href="~/Account/Register">Đăng Ký!</a></p>
+        <p class="signup-link">Chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng Ký!</a></p>
     </div>
 </body>
 </html>
-
