@@ -1,5 +1,140 @@
-﻿@{
-    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+﻿
+@{
+    Layout = null;
 }
 
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: #f2f2f2;
+    }
+
+    .container {
+        text-align: center;
+        background: #fff;
+        padding: 30px 20px;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .activation-message {
+        background-color: #e6ffe6;
+        color: #009900;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border: 1px solid #00cc00;
+    }
+
+        .activation-message .check-icon {
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+    h2 {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .login-form label {
+            align-self: flex-start;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6600;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .login-form button:hover {
+                background-color: #e65c00;
+            }
+
+    .forgot-password {
+        margin-top: 10px;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .signup-link {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .signup-link a:hover,
+            .forgot-password:hover {
+                text-decoration: underline;
+            }
+</style>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Đăng nhập để tiếp tục</h2>
+        <form class="login-form">
+            <label for="email"><strong>Email hoặc Tên Đăng nhập</strong></label>
+            <input type="email" id="email" placeholder="Email or Username" required>
+
+            <label for="password"><strong>Mật Khẩu</strong></label>
+            <input type="password" id="password" placeholder="Mật khẩu" required>
+
+            <button type="submit">Đăng Nhập</button>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        </form>
+        <p class="signup-link">Chưa có tài khoản? <a href="~/Account/Register">Đăng Ký!</a></p>
+    </div>
+</body>
+</html>
 

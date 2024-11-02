@@ -13,5 +13,9 @@ namespace DoAnWebTuyenDung.Controllers
         {
             return View();
         }
+        public ActionResult LoginLogout()
+        {
+            return View();
+        }
     }
 }
