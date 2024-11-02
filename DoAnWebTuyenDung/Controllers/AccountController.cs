@@ -14,6 +14,7 @@ namespace DoAnWebTuyenDung.Controllers
         {
             return View();
         }
+<<<<<<< HEAD
 
         // POST: Register
         [HttpPost]
@@ -49,6 +50,9 @@ namespace DoAnWebTuyenDung.Controllers
 
         // GET: Register/RegisterSuccess
         public ActionResult RegisterSuccess()
+=======
+        public ActionResult LoginLogout()
+>>>>>>> f9dd1d3e8745abec84ec0a3ac2a6c3a7dcc0bb45
         {
             return View();
         }
