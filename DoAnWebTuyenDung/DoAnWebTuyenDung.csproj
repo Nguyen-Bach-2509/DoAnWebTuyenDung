@@ -314,14 +314,11 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\JobCategories\Index.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Jobs\Details.cshtml" />
     <Content Include="Views\Account\RegisterSuccess.cshtml" />
     <Content Include="Views\JobCategories\Details.cshtml" />
     <Content Include="Views\Company\Details.cshtml" />
-=======
     <Content Include="Views\Account\LoginLogout.cshtml" />
->>>>>>> f9dd1d3e8745abec84ec0a3ac2a6c3a7dcc0bb45
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
