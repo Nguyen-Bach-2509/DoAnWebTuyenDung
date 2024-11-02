@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.Notification>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Danh Sách Thông Báo</h2>
+
+<div class="container mt-4">
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th class="text-center">@Html.DisplayNameFor(model => model.message)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.is_read)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.created_at)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.User.username)</th>
+                <th class="text-center">Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.message)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.is_read)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.created_at)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.User.username)</td>
+                    <td class="text-center">
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.notification_id }, new { @class = "btn btn-outline-warning btn-sm" })
+                        @Html.ActionLink("Chi Tiết", "Details", new { id = item.notification_id }, new { @class = "btn btn-outline-info btn-sm" })
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.notification_id }, new { @class = "btn btn-outline-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-end mb-3">
+        @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

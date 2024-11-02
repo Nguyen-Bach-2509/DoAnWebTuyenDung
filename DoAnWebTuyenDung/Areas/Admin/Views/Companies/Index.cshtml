@@ -7,11 +7,10 @@
 <h2 class="text-center mt-3">Danh Sách Công Ty</h2>
 
 <div class="container mt-4">
-
     <table class="table table-bordered table-hover">
         <thead class="table-light">
             <tr>
-                <th class="text-center">@Html.DisplayNameFor(model => model.company_logo)</th>
+                <th class="text-center">Logo</th>
                 <th class="text-center">@Html.DisplayNameFor(model => model.company_name)</th>
                 <th class="text-center">@Html.DisplayNameFor(model => model.industry)</th>
                 <th class="text-center">@Html.DisplayNameFor(model => model.description)</th>
@@ -24,7 +23,7 @@
             {
                 <tr>
                     <td class="text-center">
-                        <img src="@item.company_logo" alt="Logo" style="width: 50px; height: auto;">
+                        <img src="@item.company_logo" alt="Logo" class="company-logo">
                     </td>
                     <td class="text-center">@Html.DisplayFor(modelItem => item.company_name)</td>
                     <td class="text-center">@Html.DisplayFor(modelItem => item.industry)</td>
@@ -43,3 +42,30 @@
         @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "btn btn-primary" })
     </div>
 </div>
+
+<style>
+    /* Định dạng logo công ty */
+    .company-logo {
+        width: 80px; /* Tăng kích thước chiều rộng của logo */
+        height: 80px; /* Tăng kích thước chiều cao của logo */
+        border-radius: 8px; /* Bo tròn các góc cho logo */
+        object-fit: cover; /* Cắt ảnh nếu cần để khớp với kích thước */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ để logo nổi bật */
+        transition: transform 0.2s ease; /* Hiệu ứng khi hover */
+    }
+
+        /* Hiệu ứng khi hover trên logo */
+        .company-logo:hover {
+            transform: scale(1.1); /* Phóng to logo khi hover */
+        }
+
+    /* Tùy chỉnh bảng cho đẹp */
+    .table th, .table td {
+        vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
+    }
+
+    /* Khoảng cách giữa các nút thao tác */
+    .table .btn {
+        margin: 0 3px;
+    }
+</style>

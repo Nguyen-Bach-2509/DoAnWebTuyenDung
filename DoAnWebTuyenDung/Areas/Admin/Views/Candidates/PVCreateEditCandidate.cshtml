@@ -1,0 +1,51 @@
+﻿@model DoAnWebTuyenDung.Models.Candidate
+
+<!-- Trường Người Dùng -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.user_id, "Người Dùng", new { @class = "form-label fw-bold" })
+    @Html.DropDownList("user_id", null, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+    @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Họ Tên -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.full_name, "Họ Tên", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Số Điện Thoại -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.phone, "Số Điện Thoại", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Email -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.email, "Email", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Kinh Nghiệm -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.experience, "Kinh Nghiệm", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.experience, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.experience, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường CV -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.resume, "CV", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.resume, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.resume, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Địa Điểm -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.location, "Địa Điểm", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+</div>
+

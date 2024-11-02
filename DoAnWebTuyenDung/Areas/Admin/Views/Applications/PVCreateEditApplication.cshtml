@@ -1,0 +1,52 @@
+﻿@model DoAnWebTuyenDung.Models.Application
+<!-- Trường Công Việc -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.job_id, "Công Việc", new { @class = "form-label fw-bold" })
+    @Html.DropDownList("job_id", null, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+    @Html.ValidationMessageFor(model => model.job_id, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Ứng Viên -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.candidate_id, "Ứng Viên", new { @class = "form-label fw-bold" })
+    @Html.DropDownList("candidate_id", null, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+    @Html.ValidationMessageFor(model => model.candidate_id, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Trạng Thái -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.status, "Trạng Thái", new { @class = "form-label fw-bold" })
+    @Html.DropDownListFor(model => model.status, new SelectList(new[]
+    {
+        new { Value = "applied", Text = "Đã Nộp" },
+        new { Value = "shortlisted", Text = "Danh Sách Rút Gọn" },
+        new { Value = "interviewed", Text = "Đã Phỏng Vấn" },
+        new { Value = "rejected", Text = "Từ Chối" },
+        new { Value = "hired", Text = "Đã Tuyển" }
+    }, "Value", "Text"), new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Ngày Nộp -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.applied_at, "Ngày Nộp", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.applied_at, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.applied_at, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Ngày Cập Nhật -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.updated_at, "Ngày Cập Nhật", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.updated_at, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.updated_at, "", new { @class = "text-danger" })
+</div>
+
+<!-- Trường Ghi Chú -->
+<div class="mb-3 text-center">
+    @Html.LabelFor(model => model.notes, "Ghi Chú", new { @class = "form-label fw-bold" })
+    @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+    @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+</div>
+
+
+

@@ -1,8 +1,142 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
+@model IEnumerable<DoAnWebTuyenDung.Models.Company>
 
-<h2>Index</h2>
+<div class="page-container">
+    <h2 class="page-title">Danh Sách Công Ty</h2>
 
+    <div class="company-list">
+        @foreach (var company in Model)
+        {
+            <div class="company-card">
+                <div class="company-header">
+                    <!-- Logo công ty -->
+                    <img src="@company.company_logo" alt="@company.company_name Logo" class="company-logo" />
+
+                    <!-- Container chứa các thông tin tiêu đề và chi tiết -->
+                    <div class="company-details">
+                        <h3 class="company-name">
+                            <a href="@Url.Action("Details", "Company", new { id = company.company_id})">@company.company_name</a>
+                        </h3>
+                        <div class="company-info">
+                            <p><span class="icon">🏢</span> Ngành: @company.industry</p>
+                            <p><span class="icon">📍</span> Địa điểm: @company.location</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* Container chính của trang */
+    .page-container {
+        padding: 40px;
+        background-color: #f7f7f7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Tiêu đề trang căn giữa */
+    .page-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Bố cục chính cho danh sách các công ty */
+    .company-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 900px;
+    }
+
+    /* Định dạng card công ty */
+    .company-card {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        /* Hiệu ứng khi hover trên card */
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    /* Phần header chứa logo và chi tiết công ty, sắp xếp ngang hàng */
+    .company-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .company-logo {
+        width: 80px;
+        height: auto;
+        flex-shrink: 0;
+        border-radius: 8px;
+    }
+
+    /* Container cho tên công ty và thông tin chi tiết */
+    .company-details {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .company-name {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+    }
+
+    /* Định dạng thông tin chi tiết công ty */
+    .company-info {
+        font-size: 0.95rem;
+        color: #666;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    /* Biểu tượng cho từng dòng thông tin */
+    .icon {
+        color: #007bff; /* Màu biểu tượng */
+        font-weight: bold;
+        margin-right: 8px;
+    }
+
+    /* Định dạng khoảng cách và kiểu chữ cho thông tin */
+    .company-info p {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    /* Link cho tên công ty */
+    .company-name a {
+        color: #333;
+        text-decoration: none;
+    }
+
+        .company-name a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+</style>

@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Job_CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NotificationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReviewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -281,6 +282,13 @@
     <Content Include="Areas\Admin\Views\Reviews\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Reviews\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Reviews\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Notifications\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Notifications\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Notifications\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Notifications\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Notifications\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Applications\PVCreateEditApplication.cshtml" />
+    <Content Include="Areas\Admin\Views\Candidates\PVCreateEditCandidate.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -313,6 +321,10 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\JobCategories\Index.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Account\RegisterSuccess.cshtml" />
+    <Content Include="Views\JobCategories\Details.cshtml" />
+    <Content Include="Views\Company\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,215 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
+@model IEnumerable<DoAnWebTuyenDung.Models.Job_Categories>
+<style>
+    .banner {
+        position: relative;
+        background: url('https://images.unsplash.com/photo-1653669485641-8582ad808121?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 1;
+    }
+     .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ mờ 50% */
+            z-index: -1; /* Lớp phủ dưới nội dung */
+     }
+
+    .banner-content {
+        text-align: center;
+        max-width: 600px;
+    }
+
+        .banner-content h1 {
+            font-size: 48px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .banner-content p {
+            font-size: 18px;
+            text-align: center;
+            padding: 30px;
+            color: #818080;
+        }
+
+    .banner-buttons {
+        display: flex;
+    }
+
+        .banner-buttons a {
+            text-decoration: none;
+            color: #28a745;
+            background-color: transparent;
+            border: 1px solid #28a745;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: auto;
+            font-weight: bold;
+        }
 
 
+
+            .banner-buttons a:hover {
+                background-color: #28a745; /* Darker green on hover */
+                color: white;
+            }
+            
+            .section-heading {
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                margin-bottom: 90px;
+            }
+
+            .section-heading .page-title::before {
+                width: 100px;
+                bottom: 90px;
+                left: 50%;
+            }
+            
+            .section-heading .page-title:after {
+                width: 80px;
+                bottom: 80px;
+                left: 50%;
+                
+            }
+
+            .section-heading h2::before,
+            .section-heading h2::after {
+                    content: "";
+                    position: absolute;
+                    height: 2px;
+                    background: #28a745;
+                    transform: translateX(-50%);
+            }
+</style>
+
+
+<div class="banner">
+    <div class="banner-content">
+        <h1>Bước tiến mới cho sự nghiệp của bạn!</h1>
+        <p>Kết nối nhân tài với nhà tuyển dụng!</p>
+        <div class="banner-buttons">
+            <a class="start-btn" href="#">THAM KHẢO NGAY!</a>
+
+        </div>
+    </div>
+</div>
+
+<div class="page-container">
+    <div class="section-heading">
+       <h2 class="page-title">Danh Sách Danh Mục Công Việc</h2>
+    </div>
+
+    <div class="category-list">
+        @foreach (var category in Model)
+        {
+            <div class="category-card">
+                <a href="@Url.Action("Details", "JobCategories", new {id=category.category_id})" style=" text-decoration: none; color: inherit;">
+                    <div class="category-details">
+                        <h3 class="category-title">@category.category_name</h3>
+                        <p class="category-description"></p>
+                        @*@category.description*@
+                    </div>
+                </a>
+                
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* Container chính của trang */
+    .page-container {
+        padding: 40px;
+        background-color: #f7f7f7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Tiêu đề trang căn giữa */
+    .page-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    /* Bố cục chính cho danh sách các danh mục */
+    .category-list {
+        display: grid;
+        grid-auto-rows: 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        flex-direction: row;
+        gap: 50px;
+    }
+
+    /* Định dạng card danh mục */
+    .category-card {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        height: 210px;
+        padding: 30px;
+        background-color: #e6e6e6;
+        margin-bottom: 30px;
+        overflow: hidden;
+        transition:0.5s, transform 0.3s, box-shadow 0.3s; 
+    }
+
+        
+        /* Hiệu ứng khi hover trên card */
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background-color: #28a745;
+           
+        }
+
+    /* Container cho chi tiết danh mục */
+    .category-details {
+        display: flex;
+        flex-direction:column; 
+        overflow: hidden;
+        text-align:center;
+        gap: 10px;
+    }
+        .category-details:hover {
+            color: white;
+        }
+        /* Định dạng tiêu đề của danh mục */
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+    /* Định dạng mô tả của danh mục */
+    .category-description {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.6;
+        text-justify:inter-word;
+        margin: 0;
+    }
+</style>

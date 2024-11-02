@@ -34,4 +34,7 @@
     <div class="text-end mb-3">
         @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "btn btn-primary" })
     </div>
+    <a href="@Url.Action("Index", "JobCategories", new { area = "" })" class="btn btn-primary">
+        Xem Danh Mục Công Việc trên Trang Người Dùng
+    </a>
 </div>

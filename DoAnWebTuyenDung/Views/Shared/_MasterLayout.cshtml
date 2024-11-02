@@ -104,6 +104,57 @@
             background-color: #1ecdf0;
         }
 
+    .footer {
+        background-color: #343a40; /* Màu nền tối */
+        color: #ffffff; /* Màu chữ trắng */
+        padding: 40px 0; /* Khoảng cách bên trên và dưới */
+    }
+
+    .footer-content {
+        display: flex; /* Sử dụng flexbox để bố trí các phần */
+        justify-content: space-between; /* Khoảng cách giữa các phần */
+        flex-wrap: wrap; /* Cho phép các phần lấp đầy hàng mới */
+    }
+
+    .footer-section {
+        flex: 1; /* Chiếm 1/4 không gian */
+        min-width: 200px; /* Đặt chiều rộng tối thiểu */
+        margin-right: 20px; /* Khoảng cách bên phải */
+    }
+
+        .footer-section:last-child {
+            margin-right: 0; /* Không có margin cho phần cuối cùng */
+        }
+
+        .footer-section h3 {
+            color: #dc3b3b; /* Màu tiêu đề */
+            border-bottom: 2px solid #dc3b3b; /* Đường dưới tiêu đề */
+            padding-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+        }
+
+        .footer-section ul {
+            list-style-type: none; /* Loại bỏ kiểu danh sách */
+            padding: 0; /* Bỏ padding */
+        }
+
+            .footer-section ul li a {
+                color: #ffffff; /* Màu chữ trắng cho liên kết */
+                text-decoration: none; /* Loại bỏ gạch chân */
+            }
+
+                .footer-section ul li a:hover {
+                    text-decoration: underline; /* Gạch chân khi hover */
+                }
+
+    .footer-bottom {
+        text-align: center; /* Căn giữa */
+        padding: 20px 0; /* Khoảng cách bên trên và dưới */
+        background-color: #23272b; /* Màu nền tối cho phần dưới */
+    }
+
+        .footer-bottom p {
+            margin: 0; /* Không có khoảng cách */
+        }
 </style>
 <!DOCTYPE html>
 <html>
@@ -133,10 +184,21 @@
             </ul>
         </nav>
         <div class="auth-buttons">
-            <div class="sign-up">
-                <a href="~/Account/Register"class="register">Đăng Ký</a>
+            <div class="auth-buttons">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span>Chào, @User.Identity.Name</span>
+                    <a href="~/Account/Logout" class="logout">Đăng xuất</a>
+                }
+                else
+                {
+                    <div class="sign-up">
+                        <a href="~/Account/Register" class="register">Đăng Ký</a>
+                    </div>
+                    <a href="~/Account/LoginLogout" class="login">ĐĂNG NHẬP</a>
+                }
             </div>
-            <a href="~/Account/LoginLogout" class="login">ĐĂNG NHẬP</a>
+
         </div>
     </header>
 
@@ -145,5 +207,52 @@
     <div>
         @RenderBody()
     </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h3>About</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat quos rem ullam, placeat amet.</p>
+                    <p><a href="#" class="btn btn-primary pill text-white px-4" style="color: #dc3b3b">Read More</a></p>
+                </div>
+
+                <div class="footer-section quick-menu">
+                    <h3>Quick Menu</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Approach</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section categories">
+                    <h3>Categories</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Full Time</a></li>
+                        <li><a href="#">Freelance</a></li>
+                        <li><a href="#">Temporary</a></li>
+                        <li><a href="#">Internship</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section socials">
+                    <h3>Social Icons</h3>
+                    <p>
+                        <a href="#" class="pb-2 pr-2 pl-0"><span class="fab fa-facebook" style="color: #ffffff"></span></a>
+                        <a href="#" class="p-2"><span class="fab fa-twitter" style="color: #ffffff"></span></a>
+                        <a href="#" class="p-2"><span class="fab fa-instagram" style="color: #ffffff"></span></a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 All Rights Reserved | This template is made with <span>&#10084;</span> by Colorlib</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
+

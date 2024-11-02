@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Chi Tiết Công Việc";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+@model DoAnWebTuyenDung.Models.Job
+
+<div class="job-detail-container">
+    <!-- Phần logo công ty bên trái -->
+    <div class="company-logo-container">
+        <img src="@Model.Company.company_logo" alt="Logo Công Ty" class="company-logo">
+    </div>
+
+    <!-- Phần chi tiết công việc bên phải -->
+    <div class="job-info-container">
+        <h2>@Model.title</h2>
+        <p class="category"><h4>@Model.Job_Categories.category_name</h4></p>
+        <p class="location">@Model.location</p>
+        <p class="date">Từ @Model.posted_at?.ToString("dd/MM/yyyy") đến @Model.deadline?.ToString("dd/MM/yyyy")</p>
+
+        <h4>Mô tả công việc</h4>
+        <p>@Model.description</p>
+
+        <h4>Yêu cầu công việc</h4>
+        <p>@Model.requirements</p>
+
+        <h4>Thông tin khác</h4>
+        <p><strong>Mức lương:</strong> @Model.salary</p>
+        <p><strong>Công ty:</strong> @Model.Company.company_name</p>
+
+        <h4>Hướng dẫn ứng tuyển</h4>
+        <p>Ứng viên có thể liên hệ trực tiếp qua số điện thoại hoặc nộp hồ sơ tại công ty.</p>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Jobs")" class="back-link">Quay lại danh sách công việc</a>
+
+<style>
+    /* Container chính chứa logo và thông tin công việc */
+    .job-detail-container {
+        display: flex;
+        gap: 20px;
+        padding: 40px;
+        background-color: #f7f7f7;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    /* Phần logo công ty */
+    .company-logo-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .company-logo {
+        width: 400px;
+        height: fit-content;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Phần thông tin công việc */
+    .job-info-container {
+        flex: 2;
+    }
+
+        .job-info-container h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+    .category, .location, .date {
+        font-size: 0.95rem;
+        color: #888;
+        margin-bottom: 5px;
+    }
+
+    .job-info-container h4 {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #333;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+    .job-info-container p {
+        line-height: 1.6;
+        color: #555;
+    }
+
+    /* Link quay lại danh sách công việc */
+    .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+</style>

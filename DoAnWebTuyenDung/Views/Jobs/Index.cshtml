@@ -1,6 +1,129 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
+@model IEnumerable<DoAnWebTuyenDung.Models.Job>
 
+<div class="page-container">
+    <h2 class="page-title">Danh sách công việc</h2>
 
+    <div class="job-list">
+        @foreach (var job in Model)
+        {
+            <div class="job-card">
+                <div class="job-header">
+                    <!-- Logo công ty -->
+                    <img src="@job.Company.company_logo" alt="@job.Company.company_name Logo" class="company-logo" />
+
+                    <!-- Container chứa các thông tin tiêu đề và chi tiết -->
+                    <div class="job-details">
+                        <h3 class="job-title"><a  href="@Url.Action("Details", "Jobs", new { id = job.job_id})">@job.title</a></h3>
+                        <div class="job-info">
+                            <p><span class="icon">⏰</span> @job.employment_type</p>
+                            <p><span class="icon">🏷️</span> @job.Company.company_name</p>
+                            <p><span class="icon">📅</span> Từ @Html.DisplayFor(model => job.posted_at) đến @Html.DisplayFor(model => job.deadline)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* Container chính của trang */
+    .page-container {
+        padding: 40px;
+        background-color: #f7f7f7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Tiêu đề trang căn giữa */
+    .page-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Bố cục chính cho danh sách các job */
+    .job-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 900px;
+    }
+
+    /* Định dạng card công việc */
+    .job-card {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        /* Hiệu ứng khi hover trên card */
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    /* Phần header chứa logo và chi tiết công việc, sắp xếp ngang hàng */
+    .job-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .company-logo {
+        width: 80px;
+        height: auto;
+        flex-shrink: 0;
+        border-radius: 8px;
+    }
+
+    /* Container cho title và job info */
+    .job-details {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .job-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+    }
+
+    /* Định dạng thông tin chi tiết */
+    .job-info {
+        font-size: 0.95rem;
+        color: #666;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    /* Biểu tượng cho từng dòng thông tin */
+    .icon {
+        color: #ff4081; /* Màu biểu tượng */
+        font-weight: bold;
+        margin-right: 8px;
+    }
+
+    /* Định dạng khoảng cách và kiểu chữ cho thông tin */
+    .job-info p {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+</style>

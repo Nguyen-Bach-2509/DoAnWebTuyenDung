@@ -1,17 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DoAnWebTuyenDung.Models;
 
 namespace DoAnWebTuyenDung.Controllers
 {
     public class CompanyController : Controller
     {
-        // GET: Company
+        private DoAnEntities db = new DoAnEntities();
+
+        // GET: Companies
         public ActionResult Index()
         {
-            return View();
+            // Lấy tất cả danh sách công ty
+            var companies = db.Companies.ToList(); 
+            return View(companies);
+        }
+
+        // GET: Companies/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Company company = db.Companies.Find(id);
+            if (company == null)
+            {
+                return HttpNotFound();
+            }
+            return View(company);
         }
     }
 }

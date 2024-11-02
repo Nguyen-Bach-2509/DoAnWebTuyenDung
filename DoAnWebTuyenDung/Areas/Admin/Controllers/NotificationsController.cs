@@ -10,117 +10,116 @@ using DoAnWebTuyenDung.Models;
 
 namespace DoAnWebTuyenDung.Areas.Admin.Controllers
 {
-    public class ReviewsController : Controller
+    public class NotificationsController : Controller
     {
         private DoAnEntities db = new DoAnEntities();
 
-
-        // GET: Admin/Reviews
+        // GET: Admin/Notifications
         public ActionResult Index()
         {
-            var reviews = db.Reviews.Include(r => r.Candidate).Include(r => r.Job);
-            return View(reviews.ToList());
+            var notifications = db.Notifications.Include(n => n.User);
+            if (notifications == null)
+            {
+                return HttpNotFound();
+            }
+            return View(notifications.ToList());
         }
 
-        // GET: Admin/Reviews/Details/5
+        // GET: Admin/Notifications/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            return View(review);
+            return View(notification);
         }
 
-        // GET: Admin/Reviews/Create
+        // GET: Admin/Notifications/Create
         public ActionResult Create()
         {
-            ViewBag.candidate_id = new SelectList(db.Candidates, "candidate_id", "full_name");
-            ViewBag.job_id = new SelectList(db.Jobs, "job_id", "title");
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username");
             return View();
         }
 
-        // POST: Admin/Reviews/Create
+        // POST: Admin/Notifications/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "review_id,job_id,candidate_id,rating,review_text,created_at")] Review review)
+        public ActionResult Create([Bind(Include = "notification_id,user_id,message,is_read,created_at")] Notification notification)
         {
             if (ModelState.IsValid)
             {
-                db.Reviews.Add(review);
+                db.Notifications.Add(notification);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.candidate_id = new SelectList(db.Candidates, "candidate_id", "full_name", review.candidate_id);
-            ViewBag.job_id = new SelectList(db.Jobs, "job_id", "title", review.job_id);
-            return View(review);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // GET: Admin/Reviews/Edit/5
+        // GET: Admin/Notifications/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.candidate_id = new SelectList(db.Candidates, "candidate_id", "full_name", review.candidate_id);
-            ViewBag.job_id = new SelectList(db.Jobs, "job_id", "title", review.job_id);
-            return View(review);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // POST: Admin/Reviews/Edit/5
+        // POST: Admin/Notifications/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "review_id,job_id,candidate_id,rating,review_text,created_at")] Review review)
+        public ActionResult Edit([Bind(Include = "notification_id,user_id,message,is_read,created_at")] Notification notification)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(review).State = EntityState.Modified;
+                db.Entry(notification).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.candidate_id = new SelectList(db.Candidates, "candidate_id", "full_name", review.candidate_id);
-            ViewBag.job_id = new SelectList(db.Jobs, "job_id", "title", review.job_id);
-            return View(review);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // GET: Admin/Reviews/Delete/5
+        // GET: Admin/Notifications/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            return View(review);
+            return View(notification);
         }
 
-        // POST: Admin/Reviews/Delete/5
+        // POST: Admin/Notifications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
+            Notification notification = db.Notifications.Find(id);
+            db.Notifications.Remove(notification);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
