@@ -113,13 +113,33 @@
         </div>
         <nav>
             <ul>
-                <li>@Html.ActionLink("Trang chủ Quản trị", "Index", "Home", new { area = "admin" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Quản lý Người dùng", "Index", "User", new { area = "admin" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Quản lý Công ty", "Index", "Company", new { area = "admin" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Quản lý Danh mục", "Index", "JobCategories", new { area = "admin" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Quản lý Công việc", "Index", "Jobs", new { area = "admin" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Quản lý Ứng viên", "Index", "Candidate", new { area = "admin" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Quản lý Đơn ứng tuyển", "Index", "Application", new { area = "admin" }, new { @class = "nav-link" })</li>
+                <li>
+                    <a href="~/Admin/Home/Index">Trang chủ quản trị</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Users/Index">Quản lý người dùng</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Companies/Index">Quản lý công ty</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Job_Categories/Index">Quản lý danh mục</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Jobs/Index">Quản lý công việc</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Candidates/Index">Quản lý ứng viên</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Applications/Index">Quản lý đơn ứng tuyển</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Notifications/Index">Quản lý thông báo</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Reviews/Index">Quản lý đánh giá</a>
+                </li>
             </ul>
         </nav>
         

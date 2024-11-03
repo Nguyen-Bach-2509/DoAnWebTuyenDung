@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using DoAnWebTuyenDung.Models;
 
@@ -18,7 +19,7 @@ namespace DoAnWebTuyenDung.Controllers
         // POST: Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "username,password,email,role")] User user)
+        public ActionResult Register([Bind(Include = "username,password,email,role")] User user, string confirmPassword)
         {
             
             if (!ModelState.IsValid)
@@ -36,16 +37,27 @@ namespace DoAnWebTuyenDung.Controllers
                     ModelState.AddModelError("username", "Tên người dùng đã tồn tại. Vui lòng chọn tên khác.");
                     return View(user);
                 }
+                if (db.Users.Any(u => u.email == user.email))
+                {
+                    ModelState.AddModelError("email", "Email đã được sử dụng. Vui lòng chọn email khác.");
+                    return View(user);
+                }
+                // Kiểm tra xem mật khẩu và xác nhận mật khẩu có khớp nhau hay không
+                if (user.password != confirmPassword)
+                {
+                    ModelState.AddModelError("confirmPassword", "Mật khẩu và xác nhận mật khẩu không khớp.");
+                    return View(user);
+                }
 
                 // Gán các giá trị mặc định cho người dùng mới
                 user.created_at = DateTime.Now;
                 user.updated_at = DateTime.Now;
-                user.role = "EMPLOYER";
+                user.role = "CANDIDATE";
                 db.Users.Add(user);
                 db.SaveChanges();
 
                 // Thông báo đăng ký thành công
-                TempData["SuccessMessage"] = "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.";
+                TempData["SuccessMessage"] = HttpUtility.HtmlDecode("Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ."); 
                 return RedirectToAction("Login", "Account");
             }
 
@@ -72,7 +84,7 @@ namespace DoAnWebTuyenDung.Controllers
                 Session["Username"] = user.username;
                 Session["Role"] = user.role;
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("TrangChu", "Home");
             }
 
             else
@@ -87,7 +99,58 @@ namespace DoAnWebTuyenDung.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("TrangChu", "Home");
+        }
+        public ActionResult ChangePassword()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return View();
+        }
+
+        // POST: Account/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            int userId = (int)Session["UserId"];
+            var user = db.Users.Find(userId);
+
+            if (user != null)
+            {
+                // Kiểm tra mật khẩu hiện tại
+                if (user.password != currentPassword)
+                {
+                    ViewBag.Error = "Mật khẩu hiện tại không đúng.";
+                    return View();
+                }
+
+                // Kiểm tra mật khẩu mới và xác nhận mật khẩu có khớp không
+                if (newPassword != confirmPassword)
+                {
+                    ViewBag.Error = "Mật khẩu mới và xác nhận mật khẩu không khớp.";
+                    return View();
+                }
+
+                // Cập nhật mật khẩu mới
+                user.password = newPassword;
+                user.updated_at = DateTime.Now;
+                db.SaveChanges();
+
+                // Lưu thông báo thành công vào TempData
+                TempData["SuccessMessage"] = HttpUtility.HtmlDecode("Đổi mật khẩu thành công!");
+                return RedirectToAction("TrangChu", "Home");
+            }
+
+            ViewBag.Error = "Đã xảy ra lỗi. Vui lòng thử lại.";
+            return View();
         }
     }
 }

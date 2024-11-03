@@ -206,15 +206,8 @@
             font-weight: bold;
         }
 
-<body>
-    <div class="banner">
-        <div class="banner-content">
-            <h1>Bắt đầu sự nghiệp ngay hôm nay!</h1>
-            <p>Tìm việc dễ dàng, đón đầu thành công</p>
-            <div class="banner-buttons">
-                <a class="start-btn" href="#job-section">XEM THÊM CÁC NGÀNH NGHỀ</a>
 
-<<<<<<< HEAD
+
 
             .banner-buttons a:hover {
                 background-color: #28a745; /* Darker green on hover */
@@ -367,10 +360,7 @@
         margin: 0;
     }
 </style>
-=======
-            </div>
-        </div>
-    </div>
+
 
     <section id="job-section" class="job-section">
         <h2>Khám phá các công việc dành cho bạn</h2>
@@ -384,7 +374,6 @@
         </div>
     </section>
   
-</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -413,8 +402,8 @@
     });
 
     function scrollToSectionSlowly(target) {
-        const targetPosition = document.querySelector(target).offsetTop; // Lấy vị trí của phần tử
-        const startPosition = window.pageYOffset;
+        const targetPosition = document.querySelector(target).offsetTop;
+        const startPosition = window.scrollY; // Sửa đổi ở đây
         const distance = targetPosition - startPosition;
         const duration = 1000; // Thời gian cuộn (ms)
         let startTime = null;
@@ -425,10 +414,9 @@
             const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
             window.scrollTo(0, run);
 
-            if (timeElapsed < duration) requestAnimationFrame(animationScroll); // Tiếp tục cuộn nếu chưa hết thời gian
+            if (timeElapsed < duration) requestAnimationFrame(animationScroll);
         }
 
-        // Hàm ease để tạo hiệu ứng cuộn mượt hơn
         function easeInOutQuad(t, b, c, d) {
             t /= d / 2;
             if (t < 1) return c / 2 * t * t + b;
@@ -438,6 +426,7 @@
 
         requestAnimationFrame(animationScroll);
     }
+
 
     // JOBS
      $(document).ready(function () {

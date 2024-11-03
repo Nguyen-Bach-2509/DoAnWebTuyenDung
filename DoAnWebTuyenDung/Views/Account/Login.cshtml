@@ -28,6 +28,7 @@
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
     .logo {
         margin-bottom: 25px;
     }
@@ -117,6 +118,27 @@
             .forgot-password:hover {
                 text-decoration: underline;
             }
+    /* CSS cho thông báo lỗi */
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    /* CSS để đảm bảo thông báo lỗi được hiển thị rõ ràng */
+    .alert-danger {
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        text-align: center;
+    }
 </style>
 <!DOCTYPE html>
 <html lang="vi">
@@ -125,6 +147,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Nhập</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
@@ -151,5 +176,31 @@
         </form>
         <p class="signup-link">Chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng Ký!</a></p>
     </div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: '@Html.Raw(TempData["SuccessMessage"])',
+                timer: 3000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = '@Url.Action("Login", "Account")';
+            });
+        });
+        </script>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
 </body>
 </html>
+
+
+

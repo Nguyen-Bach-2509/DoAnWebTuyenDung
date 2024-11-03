@@ -380,7 +380,6 @@
             .pagination span.active {
                 background-color: green;
             }
-
 </style>
 <!DOCTYPE html>
 <html>
@@ -394,6 +393,7 @@
 
 </head>
 <body>
+
     <div class="banner">
         <div class="banner-content">
             <h1>Find The Best Startup Job That Fits You</h1>
@@ -568,4 +568,19 @@
     </div>
 </body>
 </html>
-
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: '@Html.Raw(TempData["SuccessMessage"])',
+                timer: 3000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = '@Url.Action("TrangChu", "Home")';
+            });
+        });
+    </script>
+}

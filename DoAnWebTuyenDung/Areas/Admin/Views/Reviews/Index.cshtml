@@ -28,8 +28,8 @@
                     <td class="text-center">@Html.DisplayFor(modelItem => item.Candidate.full_name)</td>
                     <td class="text-center">@Html.DisplayFor(modelItem => item.Job.title)</td>
                     <td class="text-center">
-                        @Html.ActionLink("Sửa", "Edit", new { id = item.review_id }, new { @class = "btn btn-outline-warning btn-sm" })
-                        @Html.ActionLink("Xóa", "Delete", new { id = item.review_id }, new { @class = "btn btn-outline-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa?');" })
+                        @Html.ActionLink("Sửa", "Edit", new {area = "Admin", id = item.review_id }, new { @class = "btn btn-outline-warning btn-sm" })
+                        @Html.ActionLink("Xóa", "Delete", new { area = "Admin", id = item.review_id }, new { @class = "btn btn-outline-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa?');" })
                     </td>
                 </tr>
             }

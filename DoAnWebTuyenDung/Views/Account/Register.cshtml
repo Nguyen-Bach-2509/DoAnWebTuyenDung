@@ -103,15 +103,19 @@
             @Html.AntiForgeryToken()
             <div class="form-group">
                 <input type="text" name="username" placeholder="Tên người dùng" class="form-control" required>
-                <span asp-validation-for="Input.UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Mật khẩu (Từ 6 đến 10 ký tự, 1 chữ hoa, 1 số)" class="form-control" required>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                @Html.ValidationMessage("username", "", new { @class = "text-danger" }) <!-- Áp dụng màu đỏ -->
             </div>
             <div class="form-group">
                 <input type="email" name="email" placeholder="Email" class="form-control" required>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                @Html.ValidationMessage("email", "", new { @class = "text-danger" }) <!-- Áp dụng màu đỏ -->
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Mật khẩu (Từ 6 đến 10 ký tự, 1 chữ hoa, 1 số)" class="form-control" required>
+                @Html.ValidationMessage("password", "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" class="form-control" required>
+                @Html.ValidationMessage("confirmPassword", "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <label>
@@ -128,14 +132,9 @@
     </div>
 </body>
 </html>
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-    <script>
-        setTimeout(function() {
-            window.location.href = '@Url.Action("Login", "Account")';
-        }, 3000);
-    </script>
-}
+<style>
+    .text-danger {
+        color: #FF0000; /* Màu đỏ */
+        font-weight: bold; /* Tùy chọn thêm: in đậm */
+    }
+</style>

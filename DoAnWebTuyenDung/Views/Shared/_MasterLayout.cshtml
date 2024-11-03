@@ -184,21 +184,23 @@
             </ul>
         </nav>
         <div class="auth-buttons">
-            <div class="auth-buttons">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <span>Chào, @User.Identity.Name</span>
-                    <a href="~/Account/Logout" class="logout">Đăng xuất</a>
-                }
-                else
-                {
-                    <div class="sign-up">
-                        <a href="~/Account/Register" class="register">Đăng Ký</a>
+            @if (Session["Username"] != null)
+            {
+                <div class="user-menu" style="position: relative; display: inline-block;">
+                    <span style="cursor: pointer; color: #FF4C4C;" > Chào, @Session["Username"]! </span>
+                    <div class="dropdown-menu" style="display: none; position: absolute; top: 20px; left: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000;">
+                        <a href="~/Account/ChangePassword" style="color: #333; display: block; margin-bottom: 5px; text-decoration: none;">Đổi mật khẩu</a>
+                        <a href="~/Account/Logout" style="color: #FF4C4C; text-decoration: none;">Đăng xuất</a>
                     </div>
-                    <a href="~/Account/LoginLogout" class="login">ĐĂNG NHẬP</a>
-                }
-            </div>
-
+                </div>
+            }
+            else
+            {
+                <div class="sign-up">
+                    <a href="~/Account/Register" class="register">Đăng Ký</a>
+                </div>
+                <a href="~/Account/Login" class="login">ĐĂNG NHẬP</a>
+            }
         </div>
     </header>
     <div>
@@ -252,4 +254,17 @@
     </footer>
 </body>
 </html>
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const userMenu = document.querySelector('.user-menu span');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
 
+        userMenu.addEventListener('click', function () {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!userMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    });</script>

@@ -324,6 +324,7 @@
     <Content Include="Views\Employers\Edit.cshtml" />
     <Content Include="Views\Employers\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
