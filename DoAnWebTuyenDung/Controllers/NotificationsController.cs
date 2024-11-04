@@ -7,109 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DoAnWebTuyenDung.Models;
-namespace DoAnWebTuyenDung.Areas.Admin.Controllers
+
+namespace DoAnWebTuyenDung.Controllers
 {
-    public class CompaniesController : Controller
+    public class NotificationsController : Controller
     {
         private DoAnEntities db = new DoAnEntities();
 
-        // GET: Admin/Companies
+        // GET: Notifications
         public ActionResult Index()
         {
-            return View(db.Companies.ToList());
+            var notifications = db.Notifications.Include(n => n.User);
+            return View(notifications.ToList());
         }
 
-        // GET: Admin/Companies/Details/5
+        // GET: Notifications/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(notification);
         }
 
-        // GET: Admin/Companies/Create
+        // GET: Notifications/Create
         public ActionResult Create()
         {
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username");
             return View();
         }
 
-        // POST: Admin/Companies/Create
+        // POST: Notifications/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "company_id,company_name,industry,description,location,company_logo")] Company company)
+        public ActionResult Create([Bind(Include = "notification_id,user_id,message,is_read,created_at")] Notification notification)
         {
             if (ModelState.IsValid)
             {
-                db.Companies.Add(company);
+                db.Notifications.Add(notification);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(company);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // GET: Admin/Companies/Edit/5
+        // GET: Notifications/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // POST: Admin/Companies/Edit/5
+        // POST: Notifications/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "company_id,company_name,industry,description,location,company_logo")] Company company)
+        public ActionResult Edit([Bind(Include = "notification_id,user_id,message,is_read,created_at")] Notification notification)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
+                db.Entry(notification).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(company);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // GET: Admin/Companies/Delete/5
+        // GET: Notifications/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(notification);
         }
 
-        // POST: Admin/Companies/Delete/5
+        // POST: Notifications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
+            Notification notification = db.Notifications.Find(id);
+            db.Notifications.Remove(notification);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

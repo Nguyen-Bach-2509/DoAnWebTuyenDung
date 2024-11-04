@@ -18,7 +18,7 @@ namespace DoAnWebTuyenDung.Controllers
         public ActionResult Index()
         {
             // Hiển thị danh sách các công việc
-            var jobs = db.Jobs.Include(j => j.Company).Include(j => j.Job_Categories);
+            var jobs = db.Jobs.Include(j => j.Company).Include(j => j.Job_Categories).AsNoTracking().ToList();
             return View(jobs.ToList());
         }
 

@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
-@model IEnumerable<DoAnWebTuyenDung.Models.Company>
+@model DoAnWebTuyenDung.Models.Company
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +22,7 @@
             color: #333;
         }
 
-        .header {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+        
 
         .page-container {
             max-width: 1000px;
@@ -127,33 +122,35 @@
     </style>
 </head>
 <body>
-    <div class="header">DANH SÁCH CÁC CÔNG TY NỔI BẬT</div>
     <div class="page-container">
-        <h2 class="page-title">Danh Sách Công Ty</h2>
+        <h2 class="page-title">Chi tiết Công Ty</h2>
         <div class="company-list">
-            @foreach (var company in Model)
-            {
-                <div class="company-card">
-                    <div class="company-header">
-                        <!-- Logo công ty -->
-                        <img src="@company.company_logo" alt="@company.company_name Logo" class="company-logo" />
+            <div class="company-card">
+                <div class="company-header">
+                    <!-- Logo công ty -->
+                    <img src="@Model.company_logo" alt="@Model.company_name Logo" class="company-logo" />
 
-                        <!-- Thông tin tiêu đề và chi tiết -->
-                        <div class="company-details">
-                            <h3 class="company-name">
-                                <a href="@Url.Action("Details", "Company", new { id = company.company_id })">
-                                    @company.company_name
-                                </a>
-                            </h3>
-                            <div class="company-info">
-                                <p><span class="icon">🏢</span> Ngành: @company.industry</p>
-                                <p><span class="icon">📍</span> Địa điểm: @company.location</p>
-                            </div>
+                    <!-- Thông tin tiêu đề và chi tiết -->
+                    <div class="company-details">
+                        <h3 class="company-name">
+                            <a href="@Url.Action("Details", "Company", new { id = Model.company_id })">
+                                @Model.company_name
+                            </a>
+                        </h3>
+                        <div class="company-info">
+                            <p><span class="icon">🏢</span><strong>Ngành:</strong>  @Model.industry</p>
+                            <p><span class="icon">📍</span><strong>Địa điểm:</strong>  @Model.location</p>
+                            <p><span class="icon">📝</span><strong>Mô tả:</strong>  @Model.description</p>
+                            <p><span class="icon">🛠️</span><strong>Nhà tuyển dụng:</strong>  @Model.Employers.Count</p>
+                            <p><span class="icon">💼</span><strong>Số công việc:</strong>  @Model.Jobs.Count</p>
                         </div>
                     </div>
                 </div>
-            }
+            </div>
         </div>
+    </div>
+    <div class="mt-3">
+        <a href="@Url.Action("Index", "Company")" class="back-link">Quay lại danh sách công ty</a>
     </div>
 </body>
 </html>

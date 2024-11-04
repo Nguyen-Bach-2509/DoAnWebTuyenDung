@@ -137,6 +137,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobCategoriesController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\DbContextOptions.cs" />
     <Compile Include="Global.asax.cs">
@@ -325,6 +326,12 @@
     <Content Include="Views\Employers\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Home\AddReview.cshtml" />
+    <Content Include="Views\Notifications\Create.cshtml" />
+    <Content Include="Views\Notifications\Delete.cshtml" />
+    <Content Include="Views\Notifications\Details.cshtml" />
+    <Content Include="Views\Notifications\Edit.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

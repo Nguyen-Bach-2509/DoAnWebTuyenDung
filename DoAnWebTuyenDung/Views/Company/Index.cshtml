@@ -10,23 +10,26 @@
     <div class="company-list">
         @foreach (var company in Model)
         {
-            <div class="company-card">
-                <div class="company-header">
-                    <!-- Logo công ty -->
-                    <img src="@company.company_logo" alt="@company.company_name Logo" class="company-logo" />
+            <a href=@Url.Action("Details", "Company", new { id = company.company_id }, null)>
+                <div class="company-card">
+                    <div class="company-header">
+                        <!-- Logo công ty -->
+                        <img src="@company.company_logo" alt="@company.company_name Logo" class="company-logo" />
 
-                    <!-- Container chứa các thông tin tiêu đề và chi tiết -->
-                    <div class="company-details">
-                        <h3 class="company-name">
-                            <a href="@Url.Action("Details", "Company", new { id = company.company_id})">@company.company_name</a>
-                        </h3>
-                        <div class="company-info">
-                            <p><span class="icon">🏢</span> Ngành: @company.industry</p>
-                            <p><span class="icon">📍</span> Địa điểm: @company.location</p>
+                        <!-- Container chứa các thông tin tiêu đề và chi tiết -->
+                        <div class="company-details">
+                            <h3 class="company-name" href="@Url.Action("Details", "Company", new { id = company.company_id})">
+                                @company.company_name
+                            </h3>
+                            <div class="company-info">
+                                <p><span class="icon">🏢</span> Ngành: @company.industry</p>
+                                <p><span class="icon">📍</span> Địa điểm: @company.location</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
+            
         }
     </div>
 </div>
