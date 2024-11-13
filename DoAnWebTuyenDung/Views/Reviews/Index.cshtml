@@ -1,0 +1,35 @@
+﻿
+@model IEnumerable<DoAnWebTuyenDung.Models.Review>
+
+@{
+    ViewBag.Title = "Danh sách đánh giá"; 
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Danh sách đánh giá</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Công việc</th>
+            <th>Người đánh giá</th>
+            <th>Điểm</th>
+            <th>Nội dung</th>
+            <th>Ngày tạo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var review in Model)
+        {
+            <tr>
+                <td>@review.Job.title</td>
+                <td>@review.Candidate.full_name</td>
+                <td>@review.rating</td>
+                <td>@review.review_text</td>
+                <td>@review.created_at?.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

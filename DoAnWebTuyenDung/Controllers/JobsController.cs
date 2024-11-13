@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DoAnWebTuyenDung.Models;
+using DoAnWebTuyenDung.Models.ViewModels;
+
 
 namespace DoAnWebTuyenDung.Controllers
 {

@@ -13,54 +13,94 @@ namespace DoAnWebTuyenDung.Controllers
         // GET: Account/Register
         public ActionResult Register()
         {
+            // Lựa chọn vai trò (Candidate hoặc Employer)
+            ViewBag.Roles = new SelectList(new[] { "CANDIDATE", "EMPLOYER" });
             return View();
         }
 
         // POST: Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "username,password,email,role")] User user, string confirmPassword)
+        public ActionResult Register([Bind(Include = "username,password,email,role")] User user, string confirmPassword, string fullName, string phone, string companyName, string companyIndustry, string companyDescription, string companyLocation, string companyLogo)
         {
-            
-            if (!ModelState.IsValid)
-            {
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
-            }
+            // Kiểm tra tính hợp lệ của dữ liệu
             if (ModelState.IsValid)
             {
-                // Kiểm tra xem tên người dùng đã tồn tại hay chưa
+                // Kiểm tra username hoặc email đã tồn tại
                 if (db.Users.Any(u => u.username == user.username))
                 {
                     ModelState.AddModelError("username", "Tên người dùng đã tồn tại. Vui lòng chọn tên khác.");
+                    ViewBag.Roles = new SelectList(new[] { "CANDIDATE", "EMPLOYER" });
                     return View(user);
                 }
+
                 if (db.Users.Any(u => u.email == user.email))
                 {
                     ModelState.AddModelError("email", "Email đã được sử dụng. Vui lòng chọn email khác.");
+                    ViewBag.Roles = new SelectList(new[] { "CANDIDATE", "EMPLOYER" });
                     return View(user);
                 }
-                // Kiểm tra xem mật khẩu và xác nhận mật khẩu có khớp nhau hay không
+
+                // Kiểm tra xác nhận mật khẩu
                 if (user.password != confirmPassword)
                 {
                     ModelState.AddModelError("confirmPassword", "Mật khẩu và xác nhận mật khẩu không khớp.");
+                    ViewBag.Roles = new SelectList(new[] { "CANDIDATE", "EMPLOYER" });
                     return View(user);
                 }
 
-                // Gán các giá trị mặc định cho người dùng mới
+                // Gán các giá trị mặc định cho tài khoản mới
                 user.created_at = DateTime.Now;
                 user.updated_at = DateTime.Now;
-                user.role = "CANDIDATE";
                 db.Users.Add(user);
                 db.SaveChanges();
 
-                // Thông báo đăng ký thành công
-                TempData["SuccessMessage"] = HttpUtility.HtmlDecode("Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ."); 
+                // Nếu vai trò là CANDIDATE, thêm vào bảng Candidate
+                if (user.role == "CANDIDATE")
+                {
+                    var candidate = new Candidate
+                    {
+                        user_id = user.user_id,
+                        full_name = fullName,
+                        phone = phone,
+                        email = user.email // Email giống thông tin user
+                    };
+                    db.Candidates.Add(candidate);
+                    db.SaveChanges();
+                }
+
+                // Nếu vai trò là EMPLOYER, thêm vào bảng Company và Employer
+                if (user.role == "EMPLOYER")
+                {
+                    // Thêm công ty vào bảng Company
+                    var company = new Company
+                    {
+                        company_name = companyName,
+                        industry = companyIndustry,
+                        description = companyDescription,
+                        location = companyLocation,
+                        company_logo = companyLogo
+                    };
+                    db.Companies.Add(company);
+                    db.SaveChanges();
+
+                    // Thêm vào bảng Employer
+                    var employer = new Employer
+                    {
+                        user_id = user.user_id,
+                        company_id = company.company_id,
+                        role = "EMPLOYER"
+                    };
+                    db.Employers.Add(employer);
+                    db.SaveChanges();
+                }
+
+                TempData["SuccessMessage"] = "Đăng ký tài khoản thành công! Bạn có thể đăng nhập ngay bây giờ.";
                 return RedirectToAction("Login", "Account");
             }
 
+            // Nếu có lỗi, trả về View với dữ liệu nhập lại
+            ViewBag.Roles = new SelectList(new[] { "CANDIDATE", "EMPLOYER" });
             return View(user);
         }
 

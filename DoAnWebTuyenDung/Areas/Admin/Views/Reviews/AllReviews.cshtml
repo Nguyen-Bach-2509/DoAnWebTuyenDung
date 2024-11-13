@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.Review>
+
+@{
+    ViewBag.Title = "Tất cả Đánh giá";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; // Layout quản trị
+}
+
+<h2 class="text-center mt-3">Tất cả Đánh giá</h2>
+
+<div class="container mt-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    if (TempData["ErrorMessage"] != null)
+    {
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ứng viên</th>
+                <th>Công việc</th>
+                <th>Đánh giá</th>
+                <th>Nội dung</th>
+                <th>Ngày tạo</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var review in Model)
+            {
+                <tr>
+                    <td>@review.Candidate.full_name</td>
+                    <td>@review.Job.title</td>
+                    <td>@review.rating</td>
+                    <td>@review.review_text</td>
+                    <td>@(review.created_at.HasValue ? review.created_at.Value.ToString("dd/MM/yyyy") : "N/A")</td>                    <td>
+                        @Html.ActionLink("Chi tiết", "Details", new { id = review.review_id }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Sửa", "Edit", new { id = review.review_id }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = review.review_id }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        @Html.ActionLink("Tạo Đánh giá Mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

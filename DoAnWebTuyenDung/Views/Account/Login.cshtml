@@ -170,15 +170,9 @@
                 <label for="password"><strong>Mật Khẩu</strong></label>
                 <input type="password" id="password" name="password" placeholder="Mật khẩu" class="form-control" required>
             </div>
-
-            <button type="submit">Đăng Nhập</button>
-            <a href="#" class="forgot-password">Quên mật khẩu?</a>
-        </form>
-        <p class="signup-link">Chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng Ký!</a></p>
-    </div>
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <script>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <script>
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 icon: 'success',
@@ -190,15 +184,23 @@
                 window.location.href = '@Url.Action("Login", "Account")';
             });
         });
-        </script>
-    }
+                </script>
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+            <button type="submit">Đăng Nhập</button>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        </form>
+        
+        <p class="signup-link">Chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng Ký!</a></p>
+    </div>
+    
 
-    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-    {
-        <div class="alert alert-danger" role="alert">
-            @ViewBag.ErrorMessage
-        </div>
-    }
+    
 </body>
 </html>
 

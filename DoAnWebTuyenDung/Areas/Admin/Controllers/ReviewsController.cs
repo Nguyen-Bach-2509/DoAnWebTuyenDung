@@ -50,18 +50,19 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "review_id,job_id,candidate_id,rating,review_text,created_at")] Review review)
+        public ActionResult Create([Bind(Include = "job_id, candidate_id, rating, review_text")] Review review)
         {
             if (ModelState.IsValid)
             {
-                db.Reviews.Add(review);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                review.created_at = DateTime.Now; // Gán thời gian tạo đánh giá
+                db.Reviews.Add(review); // Thêm vào cơ sở dữ liệu
+                db.SaveChanges(); // Lưu thay đổi
+                TempData["SuccessMessage"] = "Đánh giá của bạn đã được gửi thành công!";
+                return RedirectToAction("AllReviews");
             }
 
-            ViewBag.candidate_id = new SelectList(db.Candidates, "candidate_id", "full_name", review.candidate_id);
-            ViewBag.job_id = new SelectList(db.Jobs, "job_id", "title", review.job_id);
-            return View(review);
+            TempData["ErrorMessage"] = "Có lỗi xảy ra khi gửi đánh giá.";
+            return RedirectToAction("AllReviews");
         }
 
         // GET: Admin/Reviews/Edit/5
@@ -132,6 +133,13 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        // GET: Reviews/AllReviews
+        public ActionResult AllReviews()
+        {
+            // Lấy tất cả các đánh giá cùng thông tin ứng viên và công việc
+            var reviews = db.Reviews.Include("Candidate").Include("Job").OrderByDescending(r => r.created_at).ToList();
+            return View(reviews);
         }
     }
 }

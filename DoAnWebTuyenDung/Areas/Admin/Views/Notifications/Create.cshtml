@@ -13,17 +13,16 @@
         @Html.AntiForgeryToken()
 
         <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
-            <!-- Header của card -->
             <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
                 <h5 class="mb-0">Tạo Thông Báo Mới</h5>
             </div>
             <div class="card-body" style="background-color: #e9ecef;">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <!-- Trường Người dùng (User) -->
+                <!-- Trường Người dùng (User ) -->
                 <div class="mb-3 text-center">
                     @Html.LabelFor(model => model.user_id, "Người dùng", new { @class = "form-label fw-bold" })
-                    @Html.DropDownList("user_id", null, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+                    @Html.DropDownList("user_id", (SelectList)ViewBag.user_id, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
                     @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
                 </div>
 
@@ -38,7 +37,8 @@
                 <div class="mb-3 text-center">
                     @Html.LabelFor(model => model.is_read, "Đã đọc", new { @class = "form-label fw-bold" })
                     <div class="form-check mx-auto" style="max-width: 600px;">
-                        @Html.CheckBox("is_read", Model.is_read ?? false, new { @class = "form-check-input" })
+                        @Html.CheckBox("is_read", Model.is_read ?? false,
+                                                  new { @class = "form-check-input" })
                         <label class="form-check-label" for="is_read">Đánh dấu là đã đọc</label>
                         @Html.ValidationMessageFor(model => model.is_read, "", new { @class = "text-danger" })
                     </div>

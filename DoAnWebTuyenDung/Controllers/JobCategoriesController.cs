@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using DoAnWebTuyenDung.Models;
 
 namespace DoAnWebTuyenDung.Controllers
@@ -16,8 +17,8 @@ namespace DoAnWebTuyenDung.Controllers
         public ActionResult Index()
         {
             // Lấy dữ liệu từ bảng Job_Categories và truyền vào view
-            var jobCategories = db.Job_Categories.ToList();
-            return View(jobCategories);
+            var jobs = db.Jobs.Include(j => j.Company).Include(j => j.Job_Categories).AsNoTracking().ToList();
+            return View(jobs.ToList());
         }
         // GET: User/JobCategories/Details/5
         public ActionResult Details(int? id)
@@ -26,17 +27,12 @@ namespace DoAnWebTuyenDung.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Job_Categories JobCategories = db.Job_Categories.Find(id);
-            if (JobCategories == null)
+            Job job = db.Jobs.Find(id);
+            if (job == null)
             {
                 return HttpNotFound();
             }
-
-            var jobs = db.Jobs.Where(j => j.category_id == id).ToList(); // Lấy danh sách công việc thuộc danh mục
-            ViewBag.Jobs = jobs; // Lưu danh sách công việc vào ViewBag
-
-            return View(JobCategories); // Trả về view chi tiết với thông tin danh mục
+            return View(job);
         }
 
     }

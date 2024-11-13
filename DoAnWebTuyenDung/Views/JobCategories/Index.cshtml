@@ -1,153 +1,156 @@
-﻿@{
+﻿*@model IEnumerable<DoAnWebTuyenDung.Models.Job>
+
+@{
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-    .banner {
-        position: relative;
-        background: url('https://plus.unsplash.com/premium_photo-1678917827737-aa7dc0b0c46f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 500px;
-        display: flex;
-        
-        justify-content: center;
-        align-items: center;
-        color: white;
-        z-index: 1;
-    }
-        .banner::before
-    {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ mờ 50% */
-        z-index: -1; /* Lớp phủ dưới nội dung */
-    }
-
-    .banner-content {
-        text-align: left;
-        max-width: 600px;
-    }
-
-        .banner-content h1 {
-            font-size: 48px;
-            margin: 0;
-            text-align: center;
-            font-weight: bold;
+    <style>
+        html {
+            scroll-behavior: smooth;
         }
 
-        .banner-content p {
-            font-size: 18px;
-            text-align: center;
-            padding: 30px;
-        }
-
-    .banner-buttons {
-        display: flex;
-    }
-
-        .banner-buttons a {
-            text-decoration: none;
-            color: #FF4C4C;
-            background-color: transparent;
-            border: 1px solid #FF4C4C;
-            padding: 10px 20px;
-            border-radius: 50px;
-            margin: auto;
-            font-weight: bold;
-        }
-
-
-
-            .banner-buttons a:hover {
-                background-color: #FF4C4C; /* Darker green on hover */
-                color: white;
-            }
-
-    .job-section {
-        text-align: center;
-        color: #2d384a;
-        min-height: 100vh;
-    }
-
-        .job-section h2 {
-            font-size: 2em;
-            font-weight: 600;
-            margin-top: 80px;
-            margin-bottom: 8px;
-        }
-
-        .job-section p a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 1em;
-        }
-        .job-section p {
-            margin-top: 30px;
-            margin-bottom: 60px;
-        }
-
-        .job-section .categories {
+        .banner {
+            position: relative;
+            background: url('https://plus.unsplash.com/premium_photo-1678917827737-aa7dc0b0c46f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 500px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 1;
+        }
+
+            .banner::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ mờ 50% */
+                z-index: -1; /* Lớp phủ dưới nội dung */
+            }
+
+        .banner-content {
+            text-align: left;
+            max-width: 600px;
+        }
+
+            .banner-content h1 {
+                font-size: 48px;
+                margin: 0;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .banner-content p {
+                font-size: 18px;
+                text-align: center;
+                padding: 30px;
+            }
+
+        .banner-buttons {
+            display: flex;
+        }
+
+            .banner-buttons a {
+                text-decoration: none;
+                color: #FF4C4C;
+                background-color: transparent;
+                border: 1px solid #FF4C4C;
+                padding: 10px 20px;
+                border-radius: 50px;
+                margin: auto;
+                font-weight: bold;
+            }
+
+
+
+                .banner-buttons a:hover {
+                    background-color: #FF4C4C; /* Darker green on hover */
+                    color: white;
+                }
+
+        .job-section {
+            text-align: center;
+            color: #2d384a;
+            min-height: 100vh;
+        }
+
+            .job-section h2 {
+                font-size: 2em;
+                font-weight: 600;
+                margin-top: 80px;
+                margin-bottom: 8px;
+            }
+
+            .job-section p a {
+                color: #007bff;
+                text-decoration: none;
+                font-size: 1em;
+            }
+
+            .job-section p {
+                margin-top: 30px;
+                margin-bottom: 60px;
+            }
+
+            .job-section .categories {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+                .job-section .categories a {
+                    margin: 0 15px;
+                    color: #b0b0b0;
+                    text-decoration: none;
+                    font-size: 1em;
+                    font-weight: 500;
+                    position: relative;
+                    transition: color 0.3s;
+                }
+
+                    .job-section .categories a:hover,
+                    .job-section .categories a.active {
+                        color: #007bff;
+                    }
+
+                        .job-section .categories a.active::after {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: -10px;
+                            height: 3px;
+                            background-color: #007bff;
+                        }
+
+        #job-listing {
             margin-top: 20px;
         }
 
-            .job-section .categories a {
-                margin: 0 15px;
-                color: #b0b0b0;
-                text-decoration: none;
-                font-size: 1em;
-                font-weight: 500;
-                position: relative;
-                transition: color 0.3s;
+        .job-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+            .job-item h3 {
+                margin-bottom: 8px;
+                font-size: 1.2em;
             }
 
-                .job-section .categories a:hover,
-                .job-section .categories a.active {
-                    color: #007bff;
-                }
-
-                    .job-section .categories a.active::after {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        bottom: -10px;
-                        height: 3px;
-                        background-color: #007bff;
-                    }
-
-    #job-listing {
-        margin-top: 20px;
-    }
-
-    .job-item {
-        border: 1px solid #ddd;
-        padding: 15px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
-
-        .job-item h3 {
-            margin-bottom: 8px;
-            font-size: 1.2em;
-        }
-
-        .job-item p {
-            margin: 5px 0;
-            color: #555;
-        }
-</style>
+            .job-item p {
+                margin: 5px 0;
+                color: #555;
+            }
+    </style>
 }
-@model IEnumerable<DoAnWebTuyenDung.Models.Job_Categories>
+@*@model IEnumerable<DoAnWebTuyenDung.Models.Job_Categories>*@
 <style>
     .banner {
         position: relative;
@@ -162,7 +165,8 @@
         color: white;
         z-index: 1;
     }
-     .banner::before {
+
+        .banner::before {
             content: "";
             position: absolute;
             top: 0;
@@ -171,7 +175,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ mờ 50% */
             z-index: -1; /* Lớp phủ dưới nội dung */
-     }
+        }
 
     .banner-content {
         text-align: center;
@@ -213,37 +217,136 @@
                 background-color: #28a745; /* Darker green on hover */
                 color: white;
             }
-            
-            .section-heading {
-                width: 50%;
-                margin-left: auto;
-                margin-right: auto;
-                text-align: center;
-                margin-bottom: 90px;
-            }
 
-            .section-heading .page-title::before {
-                width: 100px;
-                bottom: 90px;
-                left: 50%;
-            }
-            
-            .section-heading .page-title:after {
-                width: 80px;
-                bottom: 80px;
-                left: 50%;
-                
-            }
+    .section-heading {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-bottom: 90px;
+    }
 
-            .section-heading h2::before,
-            .section-heading h2::after {
-                    content: "";
-                    position: absolute;
-                    height: 2px;
-                    background: #28a745;
-                    transform: translateX(-50%);
-            }
+        .section-heading .page-title::before {
+            width: 100px;
+            bottom: 90px;
+            left: 50%;
+        }
+
+        .section-heading .page-title:after {
+            width: 80px;
+            bottom: 80px;
+            left: 50%;
+        }
+
+        .section-heading h2::before,
+        .section-heading h2::after {
+            content: "";
+            position: absolute;
+            height: 2px;
+            background: #28a745;
+            transform: translateX(-50%);
+        }
+    /* Container chính của trang */
+    .page-container {
+        padding: 40px;
+        background-color: #f7f7f7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Tiêu đề trang căn giữa */
+    .page-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Bố cục chính cho danh sách các job */
+    .job-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        margin: auto;
+        margin-top: 100px;
+        max-width: 900px;
+    }
+
+    /* Định dạng card công việc */
+    .job-card {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        /* Hiệu ứng khi hover trên card */
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    /* Phần header chứa logo và chi tiết công việc, sắp xếp ngang hàng */
+    .job-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .company-logo {
+        width: 80px;
+        height: auto;
+        flex-shrink: 0;
+        border-radius: 8px;
+    }
+
+    /* Container cho title và job info */
+    .job-details {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .job-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+    }
+
+    /* Định dạng thông tin chi tiết */
+    .job-info {
+        font-size: 0.95rem;
+        color: #666;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    /* Biểu tượng cho từng dòng thông tin */
+    .icon {
+        color: #ff4081; /* Màu biểu tượng */
+        font-weight: bold;
+        margin-right: 8px;
+    }
+
+    /* Định dạng khoảng cách và kiểu chữ cho thông tin */
+    .job-info p {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
 </style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 
 <div class="banner">
@@ -259,23 +362,117 @@
 
 <div class="page-container">
     <div class="section-heading">
-       <h2 class="page-title">Danh Sách Danh Mục Công Việc</h2>
+        <h2 class="page-title">Danh Sách Danh Mục Công Việc</h2>
     </div>
 
     <div class="category-list">
-        @foreach (var category in Model)
-        {
-            <div class="category-card">
-                <a href="@Url.Action("Details", "JobCategories", new {id=category.category_id})" style=" text-decoration: none; color: inherit;">
-                    <div class="category-details">
-                        <h3 class="category-title">@category.category_name</h3>
-                        <p class="category-description"></p>
-                        @*@category.description*@
-                    </div>
-                </a>
-                
+
+
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-computer"></i></h3>
+                <p class="category-description">Công nghệ thông tin</p>
+                @*@category.description*@
             </div>
-        }
+
+
+        </div>
+
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-truck-medical"></i></h3>
+                <p class="category-description">
+                    Y tế và chăm sóc sức khỏe
+
+                </p>
+                @*@category.description*@
+            </div>
+
+
+        </div>
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-book"></i></h3>
+                <p class="category-description">
+                    Giáo dục và đào tạo
+
+                </p>
+                @*@category.description*@
+            </div>
+
+
+        </div>
+
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-coins"></i></h3>
+                <p class="category-description">
+                    Kinh doanh và tài chính
+
+                </p>
+                @*@category.description*@
+            </div>
+
+
+        </div>
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-chart-simple"></i></h3>
+                <p class="category-description">
+                    Marketing và truyền thông
+
+                </p>
+                @*@category.description*@
+            </div>
+
+
+        </div>
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-microchip"></i></h3>
+                <p class="category-description">
+                    Kỹ thuật và công nghệ
+    
+                </p>
+                @*@category.description*@
+            </div>
+
+
+        </div>
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-palette"></i></h3>
+                <p class="category-description">
+                    Nghệ thuật và sáng tạo
+
+                </p>
+                @*@category.description*@
+            </div>
+
+
+        </div>
+        <div class="category-card">
+
+            <div class="category-details">
+                <h3 class="category-title"><i class="fa-solid fa-car"></i></h3>
+                <p class="category-description">
+                    Dịch vụ và du lịch
+
+                </p>
+                @*@category.description*@
+            </div>
+
+
+        </div>
+
+
     </div>
 </div>
 
@@ -320,60 +517,104 @@
         background-color: #e6e6e6;
         margin-bottom: 30px;
         overflow: hidden;
-        transition:0.5s, transform 0.3s, box-shadow 0.3s; 
-    }
+        transition: 0.5s, transform 0.3s, box-shadow 0.3s;
 
         
+    }
+        .category-card i {
+            font-size: 40px;
+        }
         /* Hiệu ứng khi hover trên card */
         .category-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             background-color: #28a745;
-           
+            color: #fff;
         }
+        .category-card card-details i:hover {
+            color: #fff;
+        }
+            /* Container cho chi tiết danh mục */
+            .category-details {
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                text-align: center;
+                gap: 10px;
+            }
 
-    /* Container cho chi tiết danh mục */
-    .category-details {
-        display: flex;
-        flex-direction:column; 
-        overflow: hidden;
-        text-align:center;
-        gap: 10px;
+      
+    /* Định dạng tiêu đề của danh mục */
+    .category-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
     }
-        .category-details:hover {
-            color: white;
-        }
-        /* Định dạng tiêu đề của danh mục */
-        .category-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #333;
-            margin: 0;
-        }
 
     /* Định dạng mô tả của danh mục */
     .category-description {
-        font-size: 1rem;
-        color: #666;
+        font-size: 25px;
+        font-weight: bold;
+/*        color: #000;*/
+        padding: 20px;
         line-height: 1.6;
-        text-justify:inter-word;
+        text-justify: inter-word;
         margin: 0;
     }
+    .apply-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+        .apply-button:hover {
+            background-color: #19580c;
+        }
+.job-title a {
+    text-decoration: none;
+}
+      
 </style>
 
 
-    <section id="job-section" class="job-section">
-        <h2>Khám phá các công việc dành cho bạn</h2>
-        <p><a href="#">Lựa chọn ngành nghề phù hợp với sở thích và đam mê của bạn.</a></p>
-        <div class="categories">
-            <a href="#" class="active">Tất Cả Công Việc Khả Dụng</a>
-            <a href="#">Công Nghệ Thông Tin (IT)</a>
-            <a href="#">Marketing</a>
-            <a href="#">Tài Chính</a>
-            <a href="#">Phục Vụ</a>
-        </div>
-    </section>
-  
+<section id="job-section" class="job-section">
+    <h2>Khám phá các công việc dành cho bạn</h2>
+
+    <div class="job-list">
+        @foreach (var job in Model)
+        {
+            <div class="job-card">
+                <div class="job-header">
+                    <!-- Logo công ty -->
+                    <img src="@job.job_id" alt="@job. Logo" class="company-logo" />
+
+                    <!-- Container chứa các thông tin tiêu đề và chi tiết -->
+                    <div class="job-details">
+                        <h3 class="job-title"><a href="@Url.Action("Details", "Jobs", new { id = job.job_id})">@job.title</a></h3>
+                        <div class="job-info">
+                            <p><span class="icon">⏰</span> @job.employment_type</p>
+                            <p><span class="icon">🏷️</span> @job.Company.company_name</p>
+                            <p><span class="icon">📅</span> Từ @Html.DisplayFor(model => job.posted_at) đến @Html.DisplayFor(model => job.deadline)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nút Xin Việc -->
+                <div class="job-actions">
+                    <a href="@Url.Action("Apply", "Jobs", new { id = job.job_id })" class="apply-button">Xin Việc</a>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>

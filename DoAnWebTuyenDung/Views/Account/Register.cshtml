@@ -2,92 +2,126 @@
     Layout = null;
 }
 @model DoAnWebTuyenDung.Models.User
-<title>Đăng Ký Thành Viên</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f7f7f7;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        width: 100%;
-        max-width: 400px;
-        margin: 50px auto;
-        background-color: white;
-        padding: 20px;
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-    .logo {
-        margin-bottom: 25px;
-    }
-
-        .logo img {
-            max-width: 150px; /* Adjust logo size */
-            height: auto;
-        }
-
-    h1 {
-        font-size: 30px;
-        color: #333;
-    }
-
-    input[type="text"], input[type="email"], input[type="password"], select {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    input[type="checkbox"] {
-        margin-right: 10px;
-    }
-
-    .btn-submit {
-        background-color: #FF6F00;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-    }
-
-    .footer {
-        margin-top: 20px;
-        font-size: 12px;
-        color: #777;
-    }
-
-        .footer a {
-            color: #FF6F00;
-            text-decoration: none;
-        }
-
-    .alert-success {
-        color: #155724;
-        background-color: #d4edda;
-        border-color: #c3e6cb;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-</style>
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Ký Thành Viên</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Varela Round', Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .logo {
+            margin-bottom: 25px;
+        }
+
+            .logo img {
+                max-width: 150px;
+                height: auto;
+            }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .btn-submit {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-submit:hover {
+                background-color: #e65a00;
+            }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+
+            .footer a {
+                color: #FF6F00;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+
+        .text-danger {
+            color: #FF0000;
+            font-weight: bold;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        #candidateFields, #employerFields {
+            display: none;
+            text-align: left;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #333;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -101,40 +135,89 @@
         @using (Html.BeginForm("Register", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
+
             <div class="form-group">
-                <input type="text" name="username" placeholder="Tên người dùng" class="form-control" required>
-                @Html.ValidationMessage("username", "", new { @class = "text-danger" }) <!-- Áp dụng màu đỏ -->
+                @Html.TextBoxFor(m => m.username, new { @class = "form-control", placeholder = "Tên đăng nhập", required = "required" })
+                @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
             </div>
+
             <div class="form-group">
-                <input type="email" name="email" placeholder="Email" class="form-control" required>
-                @Html.ValidationMessage("email", "", new { @class = "text-danger" }) <!-- Áp dụng màu đỏ -->
+                @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder = "Email", type = "email", required = "required" })
+                @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
             </div>
+
             <div class="form-group">
-                <input type="password" name="password" placeholder="Mật khẩu (Từ 6 đến 10 ký tự, 1 chữ hoa, 1 số)" class="form-control" required>
-                @Html.ValidationMessage("password", "", new { @class = "text-danger" })
+                @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "Mật khẩu", required = "required" })
+                @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })
             </div>
+
             <div class="form-group">
-                <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" class="form-control" required>
+                <input type="password" name="confirmPassword" class="form-control" placeholder="Xác nhận mật khẩu" required />
                 @Html.ValidationMessage("confirmPassword", "", new { @class = "text-danger" })
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.role, "Vai trò")
+                @Html.DropDownList("role", ViewBag.Roles as SelectList, "Chọn vai trò", new { @class = "form-control", id = "role", required = "required" })
+                @Html.ValidationMessageFor(m => m.role, "", new { @class = "text-danger" })
+            </div>
+
+            <div id="candidateFields">
+                <h4>Thông tin ứng viên</h4>
+                <div class="form-group">
+                    <input type="text" name="fullName" class="form-control" placeholder="Họ và tên" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="phone" class="form-control" placeholder="Số điện thoại" />
+                </div>
+            </div>
+
+            <div id="employerFields">
+                <h4>Thông tin công ty</h4>
+                <div class="form-group">
+                    <input type="text" name="companyName" class="form-control" placeholder="Tên công ty" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="companyIndustry" class="form-control" placeholder="Ngành nghề" />
+                </div>
+                <div class="form-group">
+                    <textarea name="companyDescription" class="form-control" placeholder="Mô tả công ty"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="companyLocation" class="form-control" placeholder="Địa chỉ" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="companyLogo" class="form-control" placeholder="URL Logo công ty" />
+                </div>
+            </div>
+
             <div class="form-group">
                 <label>
-                    <input type="checkbox" name="agree" required> Tôi đồng ý với <a href="#">Thỏa thuận sử dụng</a> và <a href="#">Quy định bảo mật</a> của Vieclam24h
+                    <input type="checkbox" name="agree" required> Tôi đồng ý với <a href="#">Thỏa thuận sử dụng</a> và <a href="#">Quy định bảo mật</a>
                 </label>
             </div>
+
             <button type="submit" class="btn-submit">Đăng Ký</button>
         }
 
         <div class="footer">
-            Bạn là thành viên Vieclam24h? <a href='@Url.Action("Login", "Account")'>Đăng Nhập</a><br>
-            Nếu bạn đang có nhu cầu tuyển dụng, vui lòng đăng ký <a href="#">tại đây</a>
+            Bạn là thành viên Vieclam24h? <a href="@Url.Action("Login", "Account")">Đăng Nhập</a><br>
+            Nếu bạn đang có nhu cầu tuyển dụng, vui lòng đăng ký <a href="#">tại đây</a>.
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const roleDropdown = document.getElementById("role");
+            const candidateFields = document.getElementById("candidateFields");
+            const employerFields = document.getElementById("employerFields");
+
+            roleDropdown.addEventListener("change", function () {
+                const selectedRole = roleDropdown.value;
+                candidateFields.style.display = selectedRole === "CANDIDATE" ? "block" : "none";
+                employerFields.style.display = selectedRole === "EMPLOYER" ? "block" : "none";
+            });
+        });
+    </script>
 </body>
 </html>
-<style>
-    .text-danger {
-        color: #FF0000; /* Màu đỏ */
-        font-weight: bold; /* Tùy chọn thêm: in đậm */
-    }
-</style>

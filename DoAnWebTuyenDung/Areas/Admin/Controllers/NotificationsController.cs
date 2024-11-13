@@ -44,12 +44,13 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.user_id = new SelectList(db.Users, "user_id", "username");
-            return View();
+            return View(new Notification()); // Khởi tạo một đối tượng Notification mới
         }
 
         // POST: Admin/Notifications/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Admin/Notifications/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "notification_id,user_id,message,is_read,created_at")] Notification notification)
@@ -61,8 +62,9 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            // Nếu model không hợp lệ, khởi tạo lại ViewBag
             ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
-            return View(notification);
+            return View(notification); // Trả về model đã nhập
         }
 
         // GET: Admin/Notifications/Edit/5

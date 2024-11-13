@@ -39,34 +39,50 @@ namespace DoAnWebTuyenDung.Controllers
         }
         public ActionResult TrangChu()
         {
-            
-            return View();
+            var reviews = db.Reviews.Include(r => r.Candidate).OrderByDescending(r => r.created_at).Take(6).ToList();
+            ViewBag.Jobs = db.Jobs.ToList();
+            return View(reviews);
         }
         // GET: Home/AddReview
-        public ActionResult AddReview()
-        {
-            ViewBag.candidate_id = new SelectList(db.Candidates, "candidate_id", "full_name");
-            ViewBag.job_id = new SelectList(db.Jobs, "job_id", "title");
-            return View();
-        }
-
-        // POST: Home/AddReview
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddReview([Bind(Include = "job_id,candidate_id,rating,review_text")] Review review)
+        public ActionResult AddReview(int job_id, string candidate_name, string review_text, int rating)
         {
             if (ModelState.IsValid)
             {
-                review.created_at = DateTime.Now; // Gán thời gian tạo cho đánh giá
+                var candidate = db.Candidates.FirstOrDefault(c => c.full_name == candidate_name);
+
+                // Nếu ứng viên không tồn tại, tạo ứng viên mới (tuỳ theo logic bạn muốn)
+                if (candidate == null)
+                {
+                    candidate = new Candidate
+                    {
+                        full_name = candidate_name
+                    };
+                    db.Candidates.Add(candidate);
+                    db.SaveChanges();
+                }
+
+                // Tạo review mới
+                var review = new Review
+                {
+                    job_id = job_id,
+                    candidate_id = candidate.candidate_id,
+                    review_text = review_text,
+                    rating = rating,
+                    created_at = DateTime.Now
+                };
+
                 db.Reviews.Add(review);
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Đánh giá đã được thêm thành công!";
+
+                TempData["SuccessMessage"] = "Đánh giá của bạn đã được gửi thành công!";
                 return RedirectToAction("TrangChu");
             }
 
-            ViewBag.candidate_id = new SelectList(db.Candidates, "candidate_id", "full_name", review.candidate_id);
-            ViewBag.job_id = new SelectList(db.Jobs, "job_id", "title", review.job_id);
-            return View(review);
+            TempData["ErrorMessage"] = "Có lỗi xảy ra khi gửi đánh giá.";
+            return RedirectToAction("TrangChu");
         }
+
     }
 }
