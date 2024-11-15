@@ -1,0 +1,137 @@
+﻿@model DoAnWebTuyenDung.Models.Job
+
+@{
+    Layout = "~/Areas/Employers/Views/Shared/_EmployerLayout.cshtml";
+}
+
+
+<div class="container mt-5">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card shadow-lg mx-auto p-4" style="max-width: 900px; border-radius: 10px;">
+            <div class="card-header text-white text-center" style="background-color: #007bff; border-radius: 10px;">
+                <h4>Thêm Công Việc</h4>
+            </div>
+            <div class="card-body bg-light">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+                <!-- Trường Danh mục -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.category_id, "Danh Mục", new { @class = "form-label fw-bold" })
+                    @Html.DropDownList("category_id", null, new { @class = "form-select", style = "max-width: 600px; margin: auto;" })
+                    @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Tiêu đề -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.title, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", style = "max-width: 600px; margin: auto;" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Mô tả -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.description, new { @class = "form-label fw-bold" })
+                    @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = 4, style = "max-width: 600px; margin: auto;" })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Yêu cầu -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.requirements, new { @class = "form-label fw-bold" })
+                    @Html.TextAreaFor(model => model.requirements, new { @class = "form-control", rows = 4, style = "max-width: 600px; margin: auto;" })
+                    @Html.ValidationMessageFor(model => model.requirements, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Địa điểm -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.location, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control", style = "max-width: 600px; margin: auto;" } })
+                    @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Lương -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.salary, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control", style = "max-width: 600px; margin: auto;" } })
+                    @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Loại Công Việc -->
+                <div class="form-group mb-4">
+                    @Html.Label("Loại Công Việc", new { @class = "form-label fw-bold" })
+                    <div class="d-flex justify-content-center flex-wrap gap-3">
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(model => model.employment_type, "full-time", new { @class = "form-check-input", id = "employmentTypeFullTime" })
+                            <label class="form-check-label" for="employmentTypeFullTime">Toàn thời gian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(model => model.employment_type, "part-time", new { @class = "form-check-input", id = "employmentTypePartTime" })
+                            <label class="form-check-label" for="employmentTypePartTime">Bán thời gian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(model => model.employment_type, "internship", new { @class = "form-check-input", id = "employmentTypeInternship" })
+                            <label class="form-check-label" for="employmentTypeInternship">Thực tập</label>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.employment_type, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Hạn chót -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.deadline, "Hạn Chót", new { @class = "form-label fw-bold text-secondary" })
+                    @Html.EditorFor(model => model.deadline, new { htmlAttributes = new { @class = "form-control shadow-sm", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.deadline, "", new { @class = "text-danger small" })
+                </div>
+
+
+                <!-- Công việc nổi bật -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.is_featured, new { @class = "form-label fw-bold" })
+                    <div class="form-check mx-auto" style="max-width: 600px;">
+                        @Html.EditorFor(model => model.is_featured)
+                        @Html.ValidationMessageFor(model => model.is_featured, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="text-center mt-4">
+                    <input type="submit" value="Thêm Công Việc" class="btn btn-success px-5 py-2" />
+                    @Html.ActionLink("Quay Lại", "Index", null, new { @class = "btn btn-secondary px-5 py-2 ms-3" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .card-header {
+        background-color: #007bff !important;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .form-control {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .gap-3 {
+        gap: 15px;
+    }
+</style>

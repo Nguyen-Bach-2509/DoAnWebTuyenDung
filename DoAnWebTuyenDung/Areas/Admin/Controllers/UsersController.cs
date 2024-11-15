@@ -19,7 +19,7 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
         {
             return View(db.Users.ToList());
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Users/Details/5
         public ActionResult Details(int? id)
         {
@@ -34,7 +34,6 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
             }
             return View(user);
         }
-
         // GET: Admin/Users/Create
         public ActionResult Create()
         {
@@ -57,7 +56,7 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
 
             return View(user);
         }
-
+       
         // GET: Admin/Users/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -72,7 +71,7 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
             }
             return View(user);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Admin/Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -88,7 +87,7 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
             }
             return View(user);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Users/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,7 +102,7 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
             }
             return View(user);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

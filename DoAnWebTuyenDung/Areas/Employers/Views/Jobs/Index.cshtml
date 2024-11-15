@@ -1,0 +1,170 @@
+﻿@model IEnumerable<DoAnWebTuyenDung.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Employers/Views/Shared/_EmployerLayout.cshtml";
+}
+<div class="page-container">
+    <h2 class="page-title">Danh Sách Công Việc</h2>
+
+    <div class="job-table">
+        <div class="table-header">
+            <div class="table-row">
+                <div class="table-cell text-center">Công Việc</div>
+                <div class="table-cell text-center">Loại Công Việc</div>
+                <div class="table-cell text-center">Hạn Chót</div>
+                <div class="table-cell text-center">Công Ty</div>
+                <div class="table-cell text-center">Danh Mục</div>
+                <div class="table-cell text-center">Thao Tác</div>
+            </div>
+        </div>
+        <div class="table-body">
+            @foreach (var item in Model)
+            {
+                <div class="table-row">
+                    <div class="table-cell">@Html.DisplayFor(modelItem => item.title)</div>
+                    <div class="table-cell text-center">@Html.DisplayFor(modelItem => item.employment_type)</div>
+                    <div class="table-cell text-center">@Html.DisplayFor(modelItem => item.deadline)</div>
+                    <div class="table-cell">@Html.DisplayFor(modelItem => item.Company.company_name)</div>
+                    <div class="table-cell text-center">@Html.DisplayFor(modelItem => item.Job_Categories.category_name)</div>
+                    <div class="table-cell text-center actions-cell">
+                        <a href="@Url.Action("Edit", "Jobs", new { id = item.job_id })" class="action-icon">
+                            <i class="fas fa-edit"></i><span class="action-text">Sửa</span>
+                        </a>
+                        <a href="@Url.Action("Details", "Jobs", new { id = item.job_id })" class="action-icon">
+                            <i class="fas fa-info-circle"></i><span class="action-text">Chi Tiết</span>
+                        </a>
+                        <a href="@Url.Action("Delete", "Jobs", new { id = item.job_id })" class="action-icon" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                            <i class="fas fa-trash-alt"></i><span class="action-text">Xóa</span>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <br />
+    <div class="text-end mt-3">
+        @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+<style>
+    /* Main container */
+    .page-container {
+        padding: 40px;
+        background-color: #f7f7f7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Page title */
+    .page-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Job table styling */
+    .job-table {
+        width: 100%;
+        max-width: 1000px;
+        border-collapse: collapse;
+    }
+
+    .table-header, .table-body {
+        width: 100%;
+    }
+
+    .table-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 2fr 1fr 2fr;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-header .table-row {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #333;
+    }
+
+    .table-row:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table-cell {
+        padding: 10px;
+        text-align: left;
+        font-size: 0.95rem;
+        color: #555;
+        overflow-wrap: anywhere;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    /* Action buttons with hover effect */
+    .actions-cell {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .action-icon {
+        position: relative;
+        font-size: 1.2rem;
+        color: #555;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.3s;
+    }
+
+    .action-icon:hover {
+        color: #007bff;
+    }
+
+    .action-icon .action-text {
+        position: absolute;
+        top: 150%;
+        font-size: 0.85rem;
+        background-color: #333;
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 4px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        white-space: nowrap;
+    }
+
+    .action-icon:hover .action-text {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Buttons */
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .fas {
+        font-size: 1.2rem;
+    }
+</style>

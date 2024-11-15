@@ -1,0 +1,59 @@
+﻿@model DoAnWebTuyenDung.Models.Notification
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<h2 class="text-center mt-3">Chỉnh sửa Thông Báo</h2>
+
+<div class="container mt-4">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+            <!-- Header của card -->
+            <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
+                <h5 class="mb-0">Chỉnh sửa Thông Báo</h5>
+            </div>
+            <div class="card-body" style="background-color: #e9ecef;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.notification_id)
+
+                <!-- Trường Người dùng (User) -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.user_id, "Người dùng", new { @class = "form-label fw-bold" })
+                    @Html.DropDownList("user_id", null, new { @class = "form-control mx-auto", style = "max-width: 600px;" })
+                    @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Tin nhắn (Message) -->
+                <div class="mb-3 text-center">
+                    @Html.LabelFor(model => model.message, "Tin nhắn", new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.message, new { htmlAttributes = new { @class = "form-control mx-auto", style = "max-width: 600px;" } })
+                    @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Trường Đã đọc (Is Read) -->
+                <div class="mb-3 text-center">
+                    @Html.Label("Đã đọc", new { @class = "form-label fw-bold" })
+                    <div class="form-check mx-auto" style="max-width: 600px;">
+                        @Html.CheckBox("is_read", Model.is_read ?? false, new { @class = "form-check-input" })
+                        <label class="form-check-label" for="is_read">Đánh dấu là đã đọc</label>
+                        @Html.ValidationMessage("is_read", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Nút lưu thay đổi và quay lại -->
+                <div class="text-center mt-4">
+                    <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ms-2" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

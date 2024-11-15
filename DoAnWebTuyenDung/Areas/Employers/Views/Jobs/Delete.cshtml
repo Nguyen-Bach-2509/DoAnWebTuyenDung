@@ -1,0 +1,76 @@
+﻿@model DoAnWebTuyenDung.Models.Job
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Employers/Views/Shared/_EmployerLayout.cshtml";
+}
+
+<h2 class="text-center mt-3" style="color:#ff4d4d">Xóa Công Việc</h2>
+
+<div class="container mt-4">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+        <!-- Tiêu đề và màu nền của card-header -->
+        <div class="card-header text-center" style="background-color: #ff4d4d; color: #ffffff;">
+            <h5 class="mb-0">Bạn có chắc chắn muốn xóa công việc này không?</h5>
+        </div>
+        <div class="card-body" style="background-color: #f8d7da;">
+            <div class="text-center text-danger fw-bold mb-4">Thông tin công việc sẽ bị xóa vĩnh viễn.</div>
+
+            <!-- Thông tin công việc -->
+            <dl class="row justify-content-center">
+                <dt class="col-sm-3">Tên công việc:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.title)</dd>
+
+                <dt class="col-sm-3">Mô tả:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.description)</dd>
+
+                <dt class="col-sm-3">Yêu cầu:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.requirements)</dd>
+
+                <dt class="col-sm-3">Địa điểm:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.location)</dd>
+
+                <dt class="col-sm-3">Mức lương:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.salary)</dd>
+
+                <dt class="col-sm-3">Loại công việc:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.employment_type)</dd>
+
+                <dt class="col-sm-3">Ngày đăng:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.posted_at)</dd>
+
+                <dt class="col-sm-3">Hạn chót:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.deadline)</dd>
+
+                <dt class="col-sm-3">Nổi bật:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.is_featured)</dd>
+
+                <dt class="col-sm-3">Lượt xem:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.views)</dd>
+
+                <dt class="col-sm-3">Số đơn ứng tuyển:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.application_count)</dd>
+
+                <dt class="col-sm-3">Tên công ty:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.Company.company_name)</dd>
+
+                <dt class="col-sm-3">Danh mục công việc:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.Job_Categories.category_name)</dd>
+            </dl>
+
+            <!-- Form xác nhận xóa -->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="text-center mt-4">
+                    <input type="submit" value="Xóa" class="btn btn-danger" />
+                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ms-2" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

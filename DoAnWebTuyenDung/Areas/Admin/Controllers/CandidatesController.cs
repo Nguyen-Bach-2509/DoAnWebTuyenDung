@@ -13,7 +13,7 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
     public class CandidatesController : Controller
     {
         private DoAnEntities db = new DoAnEntities();
-
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Candidates
         public ActionResult Index()
         {

@@ -1,0 +1,150 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: url('https://images.unsplash.com/photo-1476231790875-016a80c274f3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+        background-size: cover;
+    }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ mờ 50% */
+            z-index: -1; /* Lớp phủ dưới nội dung */
+        }
+    .form-container {
+        background-color: #3a3b3a;
+        padding: 20px;
+        border-radius: 8px;
+        width: 550px;
+        max-width: 90%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        color: white;
+        text-align: center;
+    }
+
+        .form-container h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+    form label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form select,
+    form input[type="file"] {
+        width: 90%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+    }
+
+    form input[type="file"] {
+        padding: 0;
+    }
+
+    .employment-status {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+        .employment-status label {
+            margin-left: 5px;
+        }
+
+    form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #00b4d8;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+        form button:hover {
+            background-color: #0077b6;
+        }
+</style>
+<body>
+    <body>
+        <div class="form-container">
+            <h2>Classy Job Application Form</h2>
+            <form action="/submit-application" method="post" enctype="multipart/form-data">
+                <label for="full_name">Họ và Tên</label>
+                <input type="text" id="full_name" name="full_name" required placeholder="Full Name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Mail@example.com">
+
+                <label for="phone">Số Điện Thoại</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Phone">
+
+                <label for="experience">Kinh Nghiệm</label>
+                <textarea id="experience" name="experience" rows="3" required placeholder="Kinh nghiệm của bạn..."></textarea>
+
+                <label for="location">Nơi Ở Hiện Tại</label>
+                <input type="text" id="location" name="location" required placeholder="Địa chỉ hiện tại của bạn">
+
+                <label for="position">Bạn Muốn Nhận Công Việc Nào?</label>
+                <select id="position" name="position" required>
+                    <option value="" disabled selected>Select job</option>
+                    <option value="Job1">Job 1</option>
+                    <option value="Job2">Job 2</option>
+                    <!-- Add dynamic job options here from database -->
+                </select>
+
+                <label>Tình Trạng Việc Làm</label>
+                <div class="employment-status">
+                    <input type="radio" id="employed" name="employment_status" value="Employed" required>
+                    <label for="employed">Đang làm việc</label>
+
+                    <input type="radio" id="unemployed" name="employment_status" value="Unemployed">
+                    <label for="unemployed">Thất nghiệp</label>
+
+                    <input type="radio" id="self-employed" name="employment_status" value="Self-Employed">
+                    <label for="self-employed">Tự làm chủ</label>
+
+                    <input type="radio" id="student" name="employment_status" value="Student">
+                    <label for="student">Sinh viên</label>
+                </div>
+
+                <label for="resume">Tải Lên Hồ Sơ</label>
+                <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx">
+
+                <label for="notes">Ghi Chú Thêm</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Ghi chú thêm nếu cần..."></textarea>
+
+                <button type="submit">Gửi</button>
+            </form>
+        </div>
+    </body>
+</body>
+</html>

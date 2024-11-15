@@ -13,12 +13,14 @@ namespace DoAnWebTuyenDung
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Default route for Admin
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                 namespaces: new[] { "DoAnWebTuyenDung.Controllers" }
+                namespaces: new[] { "DoAnWebTuyenDung.Controllers" }
             );
         }
     }
+
 }

@@ -52,6 +52,10 @@
                             <input type="radio" name="role" value="CANDIDATE" class="form-check-input" id="roleCandidate" />
                             <label class="form-check-label" for="roleCandidate">Candidate</label>
                         </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="role" value="ADMIN" class="form-check-input" id="roleAdmin" />
+                            <label class="form-check-label" for="roleAdmin">Admin</label>
+                        </div>
 
                     </div>
                     @Html.ValidationMessage("role", "", new { @class = "text-danger" })

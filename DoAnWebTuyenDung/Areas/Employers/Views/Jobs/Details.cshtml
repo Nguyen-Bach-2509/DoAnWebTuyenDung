@@ -1,0 +1,64 @@
+﻿@model DoAnWebTuyenDung.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Employers/Views/Shared/_EmployerLayout.cshtml";
+}
+
+<h2 class="text-center mt-3">Chi Tiết Công Việc</h2>
+
+<div class="container mt-4">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+        <!-- Căn giữa tiêu đề và đổi màu nền của card-header -->
+        <div class="card-header text-center" style="background-color: #0094ff; color: #ffffff;">
+            <h5 class="mb-0" style="color: #ffffff">Thông Tin Công Việc</h5>
+        </div>
+        <div class="card-body" style="background-color: #e9ecef;">
+            <dl class="row justify-content-center">
+                <dt class="col-sm-3 fw-bold">Tiêu đề:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.title)</dd>
+
+                <dt class="col-sm-3 fw-bold">Mô tả:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.description)</dd>
+
+                <dt class="col-sm-3 fw-bold">Yêu cầu:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.requirements)</dd>
+
+                <dt class="col-sm-3 fw-bold">Địa điểm:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.location)</dd>
+
+                <dt class="col-sm-3 fw-bold">Mức lương:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.salary)</dd>
+
+                <dt class="col-sm-3 fw-bold">Loại công việc:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.employment_type)</dd>
+
+                <dt class="col-sm-3 fw-bold">Ngày đăng:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.posted_at)</dd>
+
+                <dt class="col-sm-3 fw-bold">Hạn chót:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.deadline)</dd>
+
+                <dt class="col-sm-3 fw-bold">Nổi bật:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.is_featured)</dd>
+
+                <dt class="col-sm-3 fw-bold">Lượt xem:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.views)</dd>
+
+                <dt class="col-sm-3 fw-bold">Số đơn ứng tuyển:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.application_count)</dd>
+
+                <dt class="col-sm-3 fw-bold">Tên công ty:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.Company.company_name)</dd>
+
+                <dt class="col-sm-3 fw-bold">Danh mục công việc:</dt>
+                <dd class="col-sm-7">@Html.DisplayFor(model => model.Job_Categories.category_name)</dd>
+            </dl>
+
+            <div class="text-center mt-4">
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.job_id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary ms-2" })
+            </div>
+        </div>
+    </div>
+</div>

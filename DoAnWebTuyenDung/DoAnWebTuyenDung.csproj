@@ -128,12 +128,14 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Job_CategoriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\NotificationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReviewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Employers\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Employers\Controllers\JobsController.cs" />
+    <Compile Include="Areas\Employers\EmployersAreaRegistration.cs" />
+    <Compile Include="Areas\Employers\Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
-    <Compile Include="Controllers\EmployersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobCategoriesController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
@@ -190,6 +192,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>DoAn.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\CandidateViewModel.cs" />
     <Compile Include="Models\ViewModels\JobSearchVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -289,6 +292,19 @@
     <Content Include="Areas\Admin\Views\Applications\PVCreateEditApplication.cshtml" />
     <Content Include="Areas\Admin\Views\Candidates\PVCreateEditCandidate.cshtml" />
     <Content Include="Areas\Admin\Views\Reviews\AllReviews.cshtml" />
+    <Content Include="Areas\Employers\Views\web.config" />
+    <Content Include="Areas\Employers\Views\Jobs\Create.cshtml" />
+    <Content Include="Areas\Employers\Views\Jobs\Delete.cshtml" />
+    <Content Include="Areas\Employers\Views\Jobs\Details.cshtml" />
+    <Content Include="Areas\Employers\Views\Jobs\Edit.cshtml" />
+    <Content Include="Areas\Employers\Views\Jobs\Index.cshtml" />
+    <Content Include="Areas\Employers\Views\Notifications\Create.cshtml" />
+    <Content Include="Areas\Employers\Views\Notifications\Delete.cshtml" />
+    <Content Include="Areas\Employers\Views\Notifications\Details.cshtml" />
+    <Content Include="Areas\Employers\Views\Notifications\Edit.cshtml" />
+    <Content Include="Areas\Employers\Views\Notifications\Index.cshtml" />
+    <Content Include="Areas\Employers\Views\Shared\_EmployerLayout.cshtml" />
+    <Content Include="Areas\Employers\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -311,38 +327,40 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
-    <Content Include="Views\Home\TrangChu.cshtml" />
-    <Content Include="Views\Jobs\Index.cshtml" />
-    <Content Include="Views\JobCategories\Index.cshtml" />
-    <Content Include="Views\Company\Index.cshtml" />
-    <Content Include="Views\Jobs\Details.cshtml" />
-    <Content Include="Views\JobCategories\Details.cshtml" />
-    <Content Include="Views\Company\Details.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\UserReviews\Index.cshtml" />
     <Content Include="Views\Employers\Create.cshtml" />
     <Content Include="Views\Employers\Delete.cshtml" />
     <Content Include="Views\Employers\Details.cshtml" />
     <Content Include="Views\Employers\Edit.cshtml" />
     <Content Include="Views\Employers\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Home\AddReview.cshtml" />
+    <Content Include="Views\Company\Details.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\JobCategories\Details.cshtml" />
+    <Content Include="Views\JobCategories\Index.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Notifications\Create.cshtml" />
     <Content Include="Views\Notifications\Delete.cshtml" />
     <Content Include="Views\Notifications\Details.cshtml" />
     <Content Include="Views\Notifications\Edit.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
-    <Content Include="Views\UserReviews\Index.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\AddReview.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\TrangChu.cshtml" />
     <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Home\JobApply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Employers\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

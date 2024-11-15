@@ -13,7 +13,6 @@ namespace DoAnWebTuyenDung.Controllers
         // GET: Account/Register
         public ActionResult Register()
         {
-            // Lựa chọn vai trò (Candidate hoặc Employer)
             ViewBag.Roles = new SelectList(new[] { "CANDIDATE", "EMPLOYER" });
             return View();
         }
@@ -23,10 +22,8 @@ namespace DoAnWebTuyenDung.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Include = "username,password,email,role")] User user, string confirmPassword, string fullName, string phone, string companyName, string companyIndustry, string companyDescription, string companyLocation, string companyLogo)
         {
-            // Kiểm tra tính hợp lệ của dữ liệu
             if (ModelState.IsValid)
             {
-                // Kiểm tra username hoặc email đã tồn tại
                 if (db.Users.Any(u => u.username == user.username))
                 {
                     ModelState.AddModelError("username", "Tên người dùng đã tồn tại. Vui lòng chọn tên khác.");
@@ -41,7 +38,6 @@ namespace DoAnWebTuyenDung.Controllers
                     return View(user);
                 }
 
-                // Kiểm tra xác nhận mật khẩu
                 if (user.password != confirmPassword)
                 {
                     ModelState.AddModelError("confirmPassword", "Mật khẩu và xác nhận mật khẩu không khớp.");
@@ -49,13 +45,11 @@ namespace DoAnWebTuyenDung.Controllers
                     return View(user);
                 }
 
-                // Gán các giá trị mặc định cho tài khoản mới
                 user.created_at = DateTime.Now;
                 user.updated_at = DateTime.Now;
                 db.Users.Add(user);
                 db.SaveChanges();
 
-                // Nếu vai trò là CANDIDATE, thêm vào bảng Candidate
                 if (user.role == "CANDIDATE")
                 {
                     var candidate = new Candidate
@@ -63,16 +57,14 @@ namespace DoAnWebTuyenDung.Controllers
                         user_id = user.user_id,
                         full_name = fullName,
                         phone = phone,
-                        email = user.email // Email giống thông tin user
+                        email = user.email
                     };
                     db.Candidates.Add(candidate);
                     db.SaveChanges();
                 }
 
-                // Nếu vai trò là EMPLOYER, thêm vào bảng Company và Employer
                 if (user.role == "EMPLOYER")
                 {
-                    // Thêm công ty vào bảng Company
                     var company = new Company
                     {
                         company_name = companyName,
@@ -84,7 +76,6 @@ namespace DoAnWebTuyenDung.Controllers
                     db.Companies.Add(company);
                     db.SaveChanges();
 
-                    // Thêm vào bảng Employer
                     var employer = new Employer
                     {
                         user_id = user.user_id,
@@ -99,7 +90,6 @@ namespace DoAnWebTuyenDung.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // Nếu có lỗi, trả về View với dữ liệu nhập lại
             ViewBag.Roles = new SelectList(new[] { "CANDIDATE", "EMPLOYER" });
             return View(user);
         }
@@ -119,20 +109,27 @@ namespace DoAnWebTuyenDung.Controllers
 
             if (user != null)
             {
-                // Đăng nhập thành công, lưu thông tin vào Session
                 Session["UserId"] = user.user_id;
                 Session["Username"] = user.username;
                 Session["Role"] = user.role;
 
+                if (user.role == "EMPLOYER")
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Employers" });
+                }
+                else if (user.role == "ADMIN")
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                }
+                else if (user.role == "CANDIDATE")
+                {
+                    return RedirectToAction("TrangChu", "Home");
+                }
                 return RedirectToAction("TrangChu", "Home");
             }
 
-            else
-            {
-                ViewBag.ErrorMessage = "Tên người dùng hoặc mật khẩu không đúng.";
-                return View();
-            }
-
+            ViewBag.ErrorMessage = "Tên người dùng hoặc mật khẩu không đúng.";
+            return View();
         }
 
         // GET: Account/Logout
@@ -141,6 +138,8 @@ namespace DoAnWebTuyenDung.Controllers
             Session.Clear();
             return RedirectToAction("TrangChu", "Home");
         }
+
+        // GET: Account/ChangePassword
         public ActionResult ChangePassword()
         {
             if (Session["UserId"] == null)
@@ -165,27 +164,23 @@ namespace DoAnWebTuyenDung.Controllers
 
             if (user != null)
             {
-                // Kiểm tra mật khẩu hiện tại
                 if (user.password != currentPassword)
                 {
                     ViewBag.Error = "Mật khẩu hiện tại không đúng.";
                     return View();
                 }
 
-                // Kiểm tra mật khẩu mới và xác nhận mật khẩu có khớp không
                 if (newPassword != confirmPassword)
                 {
                     ViewBag.Error = "Mật khẩu mới và xác nhận mật khẩu không khớp.";
                     return View();
                 }
 
-                // Cập nhật mật khẩu mới
                 user.password = newPassword;
                 user.updated_at = DateTime.Now;
                 db.SaveChanges();
 
-                // Lưu thông báo thành công vào TempData
-                TempData["SuccessMessage"] = HttpUtility.HtmlDecode("Đổi mật khẩu thành công!");
+                TempData["SuccessMessage"] = "Đổi mật khẩu thành công!";
                 return RedirectToAction("TrangChu", "Home");
             }
 

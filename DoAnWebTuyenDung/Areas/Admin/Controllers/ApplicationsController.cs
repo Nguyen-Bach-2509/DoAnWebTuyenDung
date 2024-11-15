@@ -13,7 +13,7 @@ namespace DoAnWebTuyenDung.Areas.Admin.Controllers
     public class ApplicationsController : Controller
     {
         private DoAnEntities db = new DoAnEntities();
-
+        [Authorize(Roles = "Admin")]
         // GET: Admin/Applications
         public ActionResult Index()
         {

@@ -1,41 +1,39 @@
-﻿using DoAnWebTuyenDung.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Data;
 using System.Data.Entity;
-using System.Net;
 using DoAnWebTuyenDung.Models;
 
 namespace DoAnWebTuyenDung.Controllers
 {
-    public class CompanyController : Controller
+    public class JobCategoriesController : Controller
     {
         private DoAnEntities db = new DoAnEntities();
 
-        // GET: Companies
+        // GET: JobCategories
         public ActionResult Index()
         {
-            // Lấy tất cả danh sách công ty
-            var companies = db.Companies.ToList();
-            return View(companies);
+            // Lấy dữ liệu từ bảng Job_Categories và truyền vào view
+            var jobs = db.Jobs.Include(j => j.Company).Include(j => j.Job_Categories).AsNoTracking().ToList();
+            return View(jobs.ToList());
         }
-
-        // GET: Companies/Details/5
+        // GET: User/JobCategories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Job job = db.Jobs.Find(id);
+            if (job == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(job);
         }
+
     }
 }

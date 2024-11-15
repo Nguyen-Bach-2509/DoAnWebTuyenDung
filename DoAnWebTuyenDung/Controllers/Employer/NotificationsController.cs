@@ -10,116 +10,112 @@ using DoAnWebTuyenDung.Models;
 
 namespace DoAnWebTuyenDung.Controllers
 {
-    public class EmployersController : Controller
+    public class NotificationsController : Controller
     {
         private DoAnEntities db = new DoAnEntities();
 
-        // GET: Employers
+        // GET: Notifications
         public ActionResult Index()
         {
-            var employers = db.Employers.Include(e => e.Company).Include(e => e.User);
-            return View(employers.ToList());
+            var notifications = db.Notifications.Include(n => n.User);
+            return View(notifications.ToList());
         }
 
-        // GET: Employers/Details/5
+        // GET: Notifications/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employer employer = db.Employers.Find(id);
-            if (employer == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            return View(employer);
+            return View(notification);
         }
 
-        // GET: Employers/Create
+        // GET: Notifications/Create
         public ActionResult Create()
         {
-            ViewBag.company_id = new SelectList(db.Companies, "company_id", "company_name");
             ViewBag.user_id = new SelectList(db.Users, "user_id", "username");
             return View();
         }
 
-        // POST: Employers/Create
+        // POST: Notifications/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "employer_id,user_id,company_id,role")] Employer employer)
+        public ActionResult Create([Bind(Include = "notification_id,user_id,message,is_read,created_at")] Notification notification)
         {
             if (ModelState.IsValid)
             {
-                db.Employers.Add(employer);
+                db.Notifications.Add(notification);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.company_id = new SelectList(db.Companies, "company_id", "company_name", employer.company_id);
-            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", employer.user_id);
-            return View(employer);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // GET: Employers/Edit/5
+        // GET: Notifications/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employer employer = db.Employers.Find(id);
-            if (employer == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.company_id = new SelectList(db.Companies, "company_id", "company_name", employer.company_id);
-            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", employer.user_id);
-            return View(employer);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // POST: Employers/Edit/5
+        // POST: Notifications/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "employer_id,user_id,company_id,role")] Employer employer)
+        public ActionResult Edit([Bind(Include = "notification_id,user_id,message,is_read,created_at")] Notification notification)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employer).State = EntityState.Modified;
+                db.Entry(notification).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.company_id = new SelectList(db.Companies, "company_id", "company_name", employer.company_id);
-            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", employer.user_id);
-            return View(employer);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "username", notification.user_id);
+            return View(notification);
         }
 
-        // GET: Employers/Delete/5
+        // GET: Notifications/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employer employer = db.Employers.Find(id);
-            if (employer == null)
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
             {
                 return HttpNotFound();
             }
-            return View(employer);
+            return View(notification);
         }
 
-        // POST: Employers/Delete/5
+        // POST: Notifications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employer employer = db.Employers.Find(id);
-            db.Employers.Remove(employer);
+            Notification notification = db.Notifications.Find(id);
+            db.Notifications.Remove(notification);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
